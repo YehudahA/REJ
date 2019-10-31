@@ -5,14 +5,14 @@
         <div>
             <label>
                 Property Cost:
-                <input [(ngModel)]="inversion.propertyCost" required />
+                <input [(ngModel)]="inversion.propertyCost" required appThousands />
             </label>
         </div>
 
         <div>
             <label>
                 Additional Cost:
-                <input [(ngModel)]="inversion.additionalCosts" />
+                <input [(ngModel)]="inversion.additionalCosts" appThousands />
             </label>
         </div>
 
@@ -24,7 +24,7 @@
         <div>
             <label>
                 Financing:
-                <input [(ngModel)]="inversion.financing" />
+                <input [(ngModel)]="inversion.financing" appThousands />
             </label>
         </div>
 
@@ -72,7 +72,7 @@
         <div>
             <label>
                 Current Property Value:
-                <input [(ngModel)]="inversion.currentPropertyValue" />
+                <input [(ngModel)]="inversion.currentPropertyValue" appThousands />
             </label>
         </div>
 
