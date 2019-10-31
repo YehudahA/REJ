@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Inversion } from './models/inversion';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,136 @@
+<main>
+    <div>
+        <h2>Property Profile</h2>
+
+        <div>
+            <label>
+                Property Cost:
+                <input [(ngModel)]="inversion.propertyCost" required />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Additional Cost:
+                <input [(ngModel)]="inversion.additionalCosts" />
+            </label>
+        </div>
+
+    </div>
+
+    <div>
+        <h2>Financing</h2>
+
+        <div>
+            <label>
+                Financing:
+                <input [(ngModel)]="inversion.financing" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Financing Rate:
+                <input [(ngModel)]="inversion.financingRate" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Financing Period:
+                <input [(ngModel)]="inversion.financingNPER" />
+            </label>
+        </div>
+
+        <div>
+            <label>PMT</label>
+            <div>{{inversion.PMT}}</div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Cashflow</h2>
+
+        <div>
+            <label>
+                Rent:
+                <input [(ngModel)]="inversion.rent" />
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <h2>Exit</h2>
+
+        <div>
+            <label>
+                Investment Period:
+                <input [(ngModel)]="inversion.investmentPeriod" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Current Property Value:
+                <input [(ngModel)]="inversion.currentPropertyValue" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Yearly Property Value Change:
+                <input [(ngModel)]="inversion.propertyValueChange" />
+            </label>
+        </div>
+
+    </div>
+
+
+    <div>
+        <h2>Total Cashflow</h2>
+
+        <div>
+            <label>Total Rent</label>
+            <div>{{inversion.totalRent}}</div>
+        </div>
+
+        <div>
+            <label>Total Financial Expences</label>
+            <div>{{inversion.financialExpenses}}</div>
+        </div>
+
+        <div>
+            <label>Total Income</label>
+            <div>{{inversion.totalCachflowIncome}}</div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Exit Balance</h2>
+
+        <div>
+            <label>Loan Balance</label>
+            <div>{{inversion.loanExitBalance}}</div>
+        </div>
+
+        <div>
+            <label>Future Property Value:</label>
+            <div>{{inversion.futurePropertyValue}}</div>
+        </div>
+
+        <div>
+            <label>Total</label>
+            <div>{{inversion.totalExitBalance}}</div>
+        </div>
+        
+    </div>
+
+    <div>
+        <h2>Gain</h2>
+
+        <div>
+            <label>Nominal Gain</label>
+            <div>{{inversion.nominalGain}}</div>
+        </div>
+    </div>
+</main>
