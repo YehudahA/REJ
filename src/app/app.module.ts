@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { InversionComponent } from './inversion/inversion.component';
 import { ThousandsDirective } from './directives/thousands.directive';
 import { PercentageValueAccessor } from './misc/percentage-value-accessor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PercentageValueAccessor } from './misc/percentage-value-accessor';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
