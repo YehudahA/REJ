@@ -31,7 +31,7 @@
         <div>
             <label>
                 Financing Rate:
-                <input [(ngModel)]="inversion.financingRate" />
+                <input [(ngModel)]="inversion.financingRate" type="number" step="0.01" percentage />
             </label>
         </div>
 
@@ -79,7 +79,7 @@
         <div>
             <label>
                 Yearly Property Value Change:
-                <input [(ngModel)]="inversion.propertyValueChange" />
+                <input [(ngModel)]="inversion.propertyValueChange" type="number" step="0.01" percentage />
             </label>
         </div>
 

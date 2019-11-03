@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InversionComponent } from './inversion/inversion.component';
 import { ThousandsDirective } from './directives/thousands.directive';
+import { PercentageValueAccessor } from './misc/percentage-value-accessor';
 
 @NgModule({
   declarations: [
     AppComponent,
     InversionComponent,
-    ThousandsDirective
+    ThousandsDirective,
+    PercentageValueAccessor
   ],
   imports: [
     BrowserModule,
