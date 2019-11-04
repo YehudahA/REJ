@@ -12,13 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import { AbsPipe } from './misc/abs.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     InversionComponent,
     ThousandsDirective,
-    PercentageValueAccessor
+    PercentageValueAccessor,
+    AbsPipe
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,7 @@
 
             <mat-card-footer>
                 <label class="total-label">PMT</label>
-                <label>{{inversion.PMT  | number:'1.0-0'}}</label>
+                <label>{{inversion.PMT  | abs | number:'1.0-0'}}</label>
             </mat-card-footer>
         </mat-card>
 
@@ -322,7 +322,7 @@
 
         <div>
             <label class="total-label">Financial Expences</label>
-            <label>{{inversion.financialExpenses | number:'1.0-0'}}</label>
+            <label>{{inversion.financialExpenses | abs | number:'1.0-0'}}</label>
         </div>
 
         <div>
@@ -341,7 +341,7 @@
 
         <div>
             <label class="total-label">Loan Balance:</label>
-            <span>{{inversion.loanExitBalance | number:'1.0-0'}}</span>
+            <span>{{inversion.loanExitBalance | abs | number:'1.0-0'}}</span>
         </div>
 
         <div>
