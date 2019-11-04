@@ -9,6 +9,10 @@ import { ThousandsDirective } from './directives/thousands.directive';
 import { PercentageValueAccessor } from './misc/percentage-value-accessor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatCardModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+mat-card-footer{
+    padding : 16px;;
+}
+
+.total-label{
+    width: 180px;
+    display: inline-block;
+    font-weight: bold;
+}

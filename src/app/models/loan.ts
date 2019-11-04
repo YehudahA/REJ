@@ -1,4 +1,4 @@
-import { LoanCalculator } from '../financ/loan-calculator';
+import { LoanCalculator } from '../misc/loan-calculator';
 
 export class Loan {
     pv: number;
