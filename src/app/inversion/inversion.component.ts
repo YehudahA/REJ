@@ -17,7 +17,7 @@ export class InversionComponent implements OnInit {
     this.inversion.financingNPER = 20;
 
     this.inversion.investmentPeriod = 10;
-    this.inversion.currentPropertyValue = 150000;
+    this.inversion.currentPropertyValue = 250000;
     this.inversion.propertyValueChange = 0.03;
   }
 

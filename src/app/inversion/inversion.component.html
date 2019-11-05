@@ -20,21 +20,17 @@
 
                 <mat-form-field appearance="standard">
                     <mat-label>Financing %</mat-label>
-                    
-                    <input matInput 
-                        [ngModel]="inversion.financing / inversion.propertyCost"
-                        (ngModelChange)="inversion.financing = $event * inversion.propertyCost"
-                        type="number" step="0.01" 
-                        percentage />
+
+                    <input matInput [ngModel]="inversion.financing / inversion.propertyCost"
+                        (ngModelChange)="inversion.financing = $event * inversion.propertyCost" type="number"
+                        step="0.01" percentage />
                 </mat-form-field>
             </div>
 
             <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Rate (%)</mat-label>
-                    <input matInput 
-                        [(ngModel)]="inversion.financingRate" 
-                        type="number" step="0.01" percentage />
+                    <input matInput [(ngModel)]="inversion.financingRate" type="number" step="0.01" percentage />
                 </mat-form-field>
             </div>
 
@@ -46,8 +42,16 @@
             </div>
 
             <mat-card-footer>
-                <label class="total-label">PMT</label>
-                <label>{{inversion.PMT  | abs | number:'1.0-0'}}</label>
+                <div>
+                    <label class="total-label">PMT</label>
+                    <label>{{inversion.PMT  | abs | number:'1.0-0'}}</label>
+                </div>
+
+                <div>
+                    <label class="total-label">Self Captial</label>
+                    <label>{{inversion.selfCapital | number:'1.0-0'}}</label>
+                </div>
+
             </mat-card-footer>
         </mat-card>
 
@@ -368,6 +372,11 @@
         <div>
             <label class="total-label">Nominal Gain</label>
             <span>{{inversion.nominalGain | number:'1.0-0'}}</span>
+        </div>
+
+        <div>
+            <label class="total-label">IRR</label>
+            <span>{{inversion.IRR | percent:'1.2'}}</span>
         </div>
     </mat-card>
 </main>

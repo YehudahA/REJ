@@ -2,6 +2,7 @@ import { LoanCalculator } from '../misc/loan-calculator';
 import { AdditionalCost } from './additional-cost';
 import { Rent } from './rent';
 import { MathHelpers } from '../misc/math-helpers';
+import { ArrayHelper } from '../misc/array-helper';
 
 export class Inversion {
     propertyCost: number;
@@ -48,7 +49,7 @@ export class Inversion {
         return this.propertyCost + this.additionalCosts.total;
     }
 
-    get capitalNeeded() {
+    get selfCapital() {
         return this.totalCost - this.financing;
     }
 
@@ -83,6 +84,35 @@ export class Inversion {
     }
 
     get nominalGain() {
-        return -this.capitalNeeded + this.totalCachflowIncome + this.totalExitBalance;
+        return -this.selfCapital + this.totalCachflowIncome + this.totalExitBalance;
+    }
+
+    get IRR() {
+        const values = this.cashFlowValues;
+        const irr = LoanCalculator.IRR(values);
+        const yearly = Math.pow(1 + irr, 12) - 1;
+        return yearly;
+    }
+
+    get cashFlowValues() {
+        const numbers: number[] = [];
+
+        for (let i = 1; i <= this.investmentPeriod * 12; i++) {
+            numbers.push(i);
+        }
+
+        const effectiveChange = 1 + MathHelpers.monthlyEffect(this.rent.yearlyChange);
+        const pmt = numbers.map(_ => this.PMT);
+        const rent = numbers.map(i => this.rent.monthlyIncome * Math.pow(effectiveChange, i));
+
+        const arr = [
+            [-this.selfCapital],
+            [0, ...pmt],
+            [0, ...rent],
+            [...numbers.map(_ => 0), this.totalExitBalance]
+        ];
+
+        const merged = ArrayHelper.merge(arr);
+        return merged;
     }
 }
