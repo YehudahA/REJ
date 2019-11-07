@@ -62,7 +62,7 @@ export class Inversion {
     }
 
     get totalRent() {
-        const effectiveChange = MathHelpers.monthlyEffect(this.rent.yearlyChange);
+        const effectiveChange = MathHelpers.monthlyRate(this.rent.yearlyChange);
         return MathHelpers.seriesSum(this.rent.monthlyIncome, 1 + effectiveChange, this.investmentPeriod * 12);
     }
 
@@ -101,7 +101,7 @@ export class Inversion {
             numbers.push(i);
         }
 
-        const effectiveChange = 1 + MathHelpers.monthlyEffect(this.rent.yearlyChange);
+        const effectiveChange = 1 + MathHelpers.monthlyRate(this.rent.yearlyChange);
         const pmt = numbers.map(_ => this.PMT);
         const rent = numbers.map(i => this.rent.monthlyIncome * Math.pow(effectiveChange, i));
 

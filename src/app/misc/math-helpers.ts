@@ -4,7 +4,7 @@ export class MathHelpers {
         return a1 * (Math.pow(q, n) - 1) / (q - 1);
     }
 
-    static monthlyEffect(nominalRate: number) {
+    static monthlyRate(nominalRate: number) {
         const effective = Math.pow(1 + nominalRate, 1 / 12) - 1;
         return effective;
     }
