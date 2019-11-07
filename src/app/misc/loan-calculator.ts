@@ -40,30 +40,38 @@ export class LoanCalculator {
     static NPV(values: number[], rate: number) {
         const r = rate + 1;
 
-        const result = values.reduce((previousValue, currentValue, currentIndex) =>
-            previousValue + currentValue / Math.pow(r, currentIndex)
-        );
+        const capitalized = values.map((val, ix) => val / Math.pow(r, ix + 1));
+        const result = ArrayHelper.sum(capitalized);
 
         return result;
     }
 
-    static IRR(values: number[], guess?: number) {
+    static IRR(values: number[], guess: number = 0.1) {
         let min = 0.0;
-        let max = 1.0;
-        let guest: number;
-        let NPV: number;
+        let max = guess * 2;
+
+        let npv: number;
+        let rate: number;
+
+        let count = 0;
+
         do {
-            guest = (min + max) / 2;
-            NPV =LoanCalculator.NPV(values, guest);
-            if (NPV > 0) {
-                min = guest;
+            rate = (min + max) / 2;
+            npv = LoanCalculator.NPV(values, rate);
+
+            if (npv > 0) {
+                min = rate;
             }
             else {
-                max = guest;
+                max = rate;
             }
 
-            console.log(Math.abs(NPV));
-        } while (Math.abs(NPV) > 0.000001);
-        return guest;
+            count++;
+
+            if (count > 50) {
+                throw '#NUM!';
+            }
+        } while (Math.abs(npv) > 0.000001);
+        return rate;
     }
 }
