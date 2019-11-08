@@ -47,6 +47,13 @@ export class LoanCalculator {
     }
 
     static IRR(values: number[], guess: number = 0.1) {
+        // check that values contains at least one positive value and one negative value
+        const positive = values.some(val => val > 0);
+        const negative = values.some(val => val < 0);
+
+        // Return error if values does not contain at least one positive value and one negative value
+        if (!positive || !negative) throw '#NUM!';
+
         let min = 0.0;
         let max = guess * 2;
 
