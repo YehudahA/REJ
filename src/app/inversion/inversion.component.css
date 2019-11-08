@@ -1,4 +1,14 @@
-mat-card-footer{
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mat-card {
+    margin: 15px;
+    border: 1px solid blue;
+}
+
+.mat-card-footer{
     padding : 16px;;
 }
 
