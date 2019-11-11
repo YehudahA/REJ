@@ -10,25 +10,20 @@ export class ThousandsDirective {
   @HostListener("change")
   onChange() {
     const input = this.element.nativeElement;
-    const value = input.value;
+    const valueStr = input.value;
 
-    if(!value) return;
+    if(!valueStr) return;
     
-    const valueNum = +value;
+    let valueNum = +valueStr;
 
-    let newValue: number;
-
-    if (value.startsWith("=")) {
-      newValue = +value.substr(1);
-    }
-    else if (valueNum <= 1000) {
-      newValue = valueNum * 1000;
+    if (valueNum <= 1000 && !valueStr.startsWith("0")) {
+      valueNum*=1000;
     }
 
-    const newValueStr = newValue.toString();
-    if (newValueStr != value) {
+    const newValueStr = valueNum.toString();
+    if (newValueStr != valueStr) {
       input.value = newValueStr;
-      this.ngModelChange.emit(newValue);
+      this.ngModelChange.emit(valueNum);
     }
   }
 
