@@ -12,6 +12,59 @@ main{
     padding : 16px;;
 }
 
+mat-form-field{
+    width: 180px;
+}
+
+mat-expansion-panel mat-card-title{
+    font-size: 16px;
+}
+
+.flex-push-end{
+margin-inline-start: auto;
+}
+
+#total-additionalcost{
+    margin-inline-end: 15px;
+}
+
+.output-element{
+font-size: 16px;
+}
+
+.input-with-calc{
+display: flex;
+}
+
+.calc-form-field{
+    margin-inline-start: 5px;
+    width: 180px;
+    margin-bottom: 18.8125px;
+    padding-bottom: .5em;
+    padding-inline-end: 1.5em;
+    border-radius: 4px 4px 0 0;
+background-color:     rgba(0,0,0,.04);
+display: flex;
+align-items: flex-end;
+justify-content: flex-end;
+letter-spacing: 0.05em;
+}
+
+.card-total-row .calc-form-field{
+    margin-inline-start: auto;
+}
+
+.card-total-row{
+    font-weight: 500;
+    display: flex;
+    height: 70px;
+}
+
+.card-total-row-label{
+    padding-top: 1.5em;
+    padding-inline-start: .5em;
+}
+
 .total-label{
     width: 180px;
     display: inline-block;

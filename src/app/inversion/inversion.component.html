@@ -1,6 +1,6 @@
 <main>
     <mat-card>
-        <mat-card-header>Property</mat-card-header>
+        <mat-card-title>Property</mat-card-title>
 
         <div>
             <mat-form-field appearance="standard">
@@ -9,154 +9,175 @@
             </mat-form-field>
         </div>
 
-        <div>
-            <mat-form-field appearance="standard">
-                <mat-label>Total Additional Cost</mat-label>
-                <input matInput readonly [ngModel]="inversion.additionalCosts.total" />
-            </mat-form-field>
-        </div>
-
         <mat-expansion-panel>
-            <mat-expansion-panel-header>Additional Cost</mat-expansion-panel-header>
+            <mat-expansion-panel-header>
+                <label>Additional Cost</label>
+                <div id=total-additionalcost class="flex-push-end">
+                    <label>Total: </label>
+                    <span class="output-element">{{inversion.additionalCosts.total | number:'1.0-0'}}</span>
+                </div>
+            </mat-expansion-panel-header>
 
             <mat-card>
-                <mat-card-header>Financing Expenses</mat-card-header>
+                <mat-card-title>Financing Expenses</mat-card-title>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Taxes & Fees (%)</mat-label>
+                        <mat-label>Taxes & Fees</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.financTaxes" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.financTaxesTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.financTaxesTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Appraisal</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.appraisal" type="number" />
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.appraisalTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.appraisalTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Mortgage Fees (%)</mat-label>
+                        <mat-label>Mortgage Fees</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.mortgageFees" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly
-                            [ngModel]="inversion.additionalCosts.mortgageFeesTotal  | number:'1.0-0'" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.mortgageFeesTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <mat-card-footer>
-                    <label class="total-label">Total</label>
-                    <label>{{inversion.additionalCosts.financTotal  | number:'1.0-0'}}</label>
-                </mat-card-footer>
+                <div class="card-total-row">
+                    <label class="card-total-row-label">Total</label>
+
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.financTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
+                </div>
             </mat-card>
 
             <mat-card>
-                <mat-card-header>Additional Costs</mat-card-header>
+                <mat-card-title>Additional Costs</mat-card-title>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Purchase Tax (%)</mat-label>
+                        <mat-label>Purchase Tax</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.purchaseTax" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.purchaseTaxTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.purchaseTaxTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Due Diligens Reports (%)</mat-label>
-                        <input matInput [(ngModel)]="inversion.additionalCosts.diligensReports" type="number" percentage />
+                        <mat-label>Due Diligens Reports</mat-label>
+                        <input matInput [(ngModel)]="inversion.additionalCosts.diligensReports" type="number"
+                            percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.diligensReportsTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">
+                            {{inversion.additionalCosts.diligensReportsTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Notary & Property Registration (%)</mat-label>
+                        <mat-label>Notary & Property Registration</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.notary" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.notaryTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.notaryTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Tourist Use Permission</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.touristUsePermission" type="number" />
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.touristUsePermissionTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">
+                            {{inversion.additionalCosts.touristUsePermissionTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Legal Fees (Lawyers) (%)</mat-label>
+                        <mat-label>Legal Fees (Lawyers)</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.lawyers" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total (+300)</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.lawyersTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.lawyersTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Legal (miscelaneous)</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.legal" type="number" />
                     </mat-form-field>
 
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.legal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
-                        <mat-label>Process Fees (REJ & GB) (%)</mat-label>
+                        <mat-label>Process Fees (REJ & GB)</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.REJFees" type="number" percentage />
+                        <span matSuffix>%</span>
                     </mat-form-field>
 
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.REJFeesTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.REJFeesTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <mat-card-footer>
-                    <label class="total-label">Total</label>
-                    <label>{{inversion.additionalCosts.additionalTotal  | number:'1.0-0'}}</label>
-                </mat-card-footer>
+                <div class="card-total-row">
+                    <label class="card-total-row-label">Total</label>
+
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.additionalTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
+                </div>
+
             </mat-card>
 
             <mat-card>
-                <mat-card-header>Renovation Costs (Est.)</mat-card-header>
+                <mat-card-title>Renovation Costs (Est.)</mat-card-title>
 
                 <div>
                     <mat-form-field appearance="standard">
@@ -165,43 +186,44 @@
                     </mat-form-field>
 
                 </div>
-                <div>
+
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Cost per Sq.M</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.renovationCostPerM" type="number" />
                     </mat-form-field>
 
-
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.renovationCostPropertyTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">
+                            {{inversion.additionalCosts.renovationCostPropertyTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Accessories & Appliances</mat-label>
                         <input matInput [(ngModel)]="inversion.additionalCosts.accesseories" type="number" />
                     </mat-form-field>
 
-
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.accesseoriesTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.accesseoriesTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
-                <div>
+                <div class="input-with-calc">
                     <mat-form-field appearance="standard">
                         <mat-label>Renovation Management</mat-label>
-                        <input matInput [(ngModel)]="inversion.additionalCosts.renovationManagement" type="number" percentage />
+                        <input matInput [(ngModel)]="inversion.additionalCosts.renovationManagement" type="number"
+                            percentage />
                     </mat-form-field>
 
-
-                    <mat-form-field appearance="standard">
-                        <mat-label>Total</mat-label>
-                        <input matInput readonly [ngModel]="inversion.additionalCosts.renovationManagementTotal" />
-                    </mat-form-field>
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">
+                            {{inversion.additionalCosts.renovationManagementTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
                 </div>
 
                 <mat-card-footer>
@@ -212,7 +234,7 @@
             </mat-card>
 
             <mat-card>
-                <mat-card-header>Other Expenses</mat-card-header>
+                <mat-card-title>Other Expenses</mat-card-title>
 
                 <mat-form-field appearance="standard">
                     <mat-label>Unpredicted (Est.)</mat-label>
@@ -223,27 +245,30 @@
     </mat-card>
 
     <mat-card>
-        <mat-card-header>Financing</mat-card-header>
+        <mat-card-title>Financing</mat-card-title>
 
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Financing</mat-label>
+                <mat-label>Principal</mat-label>
                 <input matInput [(ngModel)]="inversion.financing" type="number" required appThousands />
             </mat-form-field>
 
             <mat-form-field appearance="standard">
-                <mat-label>Financing %</mat-label>
+                <mat-label></mat-label>
 
                 <input matInput [ngModel]="inversion.financing / inversion.propertyCost"
                     (ngModelChange)="inversion.financing = $event * inversion.propertyCost" type="number" step="0.01"
                     percentage />
+
+                <span matSuffix>%</span>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Rate (%)</mat-label>
+                <mat-label>Rate</mat-label>
                 <input matInput [(ngModel)]="inversion.financingRate" type="number" step="0.01" percentage />
+                <span matSuffix>%</span>
             </mat-form-field>
         </div>
 
@@ -269,7 +294,7 @@
     </mat-card>
 
     <mat-card>
-        <mat-card-header>Rent</mat-card-header>
+        <mat-card-title>Rent</mat-card-title>
 
         <div>
             <mat-form-field appearance="standard">
@@ -279,14 +304,16 @@
         </div>
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Yearly Change (%)</mat-label>
+                <mat-label>Yearly Change</mat-label>
                 <input matInput [(ngModel)]="inversion.rent.yearlyChange" type="number" percentage />
+                <span matSuffix>%</span>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Occupancy (%)</mat-label>
+                <mat-label>Occupancy</mat-label>
                 <input matInput [(ngModel)]="inversion.rent.occupancyPercentage" type="number" percentage />
+                <span matSuffix>%</span>
             </mat-form-field>
         </div>
         <div>
@@ -303,7 +330,7 @@
     </mat-card>
 
     <mat-card>
-        <mat-card-header>Exit</mat-card-header>
+        <mat-card-title>Exit</mat-card-title>
 
         <div>
             <mat-form-field appearance="standard">
@@ -321,8 +348,9 @@
 
         <div>
             <mat-form-field appearance="standard">
-                <mat-label>Yearly Value Change (%)</mat-label>
+                <mat-label>Yearly Value Change</mat-label>
                 <input matInput [(ngModel)]="inversion.propertyValueChange" type="number" step="0.01" percentage />
+                <span matSuffix>%</span>
             </mat-form-field>
         </div>
 
@@ -330,7 +358,7 @@
 
     <div>
         <mat-card>
-            <mat-card-header>Total Cashflow</mat-card-header>
+            <mat-card-title>Total Cashflow</mat-card-title>
 
             <div>
                 <label class="total-label">Total Rent</label>
@@ -349,7 +377,7 @@
         </mat-card>
 
         <mat-card>
-            <mat-card-header>Balance</mat-card-header>
+            <mat-card-title>Balance</mat-card-title>
 
             <div>
                 <label class="total-label">Future Property Value:</label>
@@ -368,7 +396,7 @@
         </mat-card>
 
         <mat-card>
-            <mat-card-header>Gain</mat-card-header>
+            <mat-card-title>Gain</mat-card-title>
 
             <div>
                 <label class="total-label">Nominal Gain</label>
