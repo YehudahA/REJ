@@ -52,8 +52,10 @@ export class LoanCalculator {
         const negative = values.some(val => val < 0);
 
         // Return error if values does not contain at least one positive value and one negative value
-        if (!positive || !negative) throw '#NUM!';
-
+        if (!positive || !negative) {
+            console.warn("IRR must have negative and positive values.");
+            return null; //throw '#NUM!';
+        }
         let min = 0.0;
         let max = guess * 2;
 
@@ -76,7 +78,8 @@ export class LoanCalculator {
             count++;
 
             if (count > 50) {
-                throw '#NUM!';
+                console.warn("IRR doesn't success after 50 tries.");
+                return null; // throw '#NUM!';
             }
         } while (Math.abs(npv) > 0.000001);
         return rate;
