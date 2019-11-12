@@ -1,7 +1,7 @@
 
-import {Directive, ElementRef, Renderer2, forwardRef} from '@angular/core';
+import { Directive, ElementRef, Renderer2, forwardRef } from '@angular/core';
 
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const NUMBER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -35,7 +35,7 @@ export const NUMBER_VALUE_ACCESSOR: any = {
  */
 @Directive({
   selector:
-      'input[percentage]',
+    'input[percentage]',
   host: {
     '(change)': 'onChange($event.target.value)',
     '(input)': 'onChange($event.target.value)',
@@ -49,15 +49,15 @@ export class PercentageValueAccessor implements ControlValueAccessor {
    * The registered callback function called when a change or input event occurs on the input
    * element.
    */
-  onChange = (_: any) => {};
+  onChange = (_: any) => { };
 
   /**
    * @description
    * The registered callback function called when a blur event occurs on the input element.
    */
-  onTouched = () => {};
+  onTouched = () => { };
 
-  constructor(private _renderer: Renderer2, private _elementRef: ElementRef) {}
+  constructor(private _renderer: Renderer2, private _elementRef: ElementRef) { }
 
   /**
    * Sets the "value" property on the input element.
@@ -66,7 +66,7 @@ export class PercentageValueAccessor implements ControlValueAccessor {
    */
   writeValue(value: number): void {
     // The value needs to be normalized for IE9, otherwise it is set to 'null' when null
-    const normalizedValue = value == null ? '' : value*100;
+    const normalizedValue = value == null ? 0 : (value * 100).toFixed(2);
     this._renderer.setProperty(this._elementRef.nativeElement, 'value', normalizedValue);
   }
 
@@ -76,8 +76,8 @@ export class PercentageValueAccessor implements ControlValueAccessor {
    *
    * @param fn The callback function
    */
-  registerOnChange(fn: (_: number|null) => void): void {
-    this.onChange = (value) => { fn(value == '' ? null : parseFloat(value) /100); };
+  registerOnChange(fn: (_: number | null) => void): void {
+    this.onChange = (value) => { fn(value == '' ? null : parseFloat(value) / 100); };
   }
 
   /**
