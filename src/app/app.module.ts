@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { AbsPipe } from './misc/abs.pipe';
 
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +31,8 @@ import { AbsPipe } from './misc/abs.pipe';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatInputModule,
-    MatCardModule
-    
+    MatCardModule,
+    Ng2GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

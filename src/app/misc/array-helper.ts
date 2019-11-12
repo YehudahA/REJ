@@ -15,4 +15,8 @@ export class ArrayHelper {
     static sum(values: number[]): number {
         return values.reduce((p, c) => p + c);
     }
+
+    static range(start: number, end: number) {
+        return Array(end - start + 1).fill(null).map((_, idx) => start + idx)
+      }
 }

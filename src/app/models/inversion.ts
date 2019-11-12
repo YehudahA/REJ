@@ -3,17 +3,76 @@ import { AdditionalCost } from './additional-cost';
 import { Rent } from './rent';
 import { MathHelpers } from '../misc/math-helpers';
 import { ArrayHelper } from '../misc/array-helper';
+import { ChangeNotifier } from './change-notifier';
+import { EventEmitter } from '@angular/core';
 
-export class Inversion {
-    propertyCost: number;
-    financing: number;
-    financingRate: number;
-    financingNPER: number;
+export class Inversion implements ChangeNotifier {
 
-    currentPropertyValue: number;
-    propertyValueChange: number;
+    changeEmitter = new EventEmitter<any>();
+    emit() { this.changeEmitter.emit(null); }
 
-    investmentPeriod: number;
+    private _propertyCost: number;
+    get propertyCost() { return this._propertyCost; }
+    set propertyCost(val: number) {
+        if (val != this._propertyCost) {
+            this._propertyCost = val;
+            this.emit();
+        }
+    }
+
+    private _financing: number;
+    get financing() { return this._financing; }
+    set financing(val: number) {
+        if (val != this._financing) {
+            this._financing = val;
+            this.emit();
+        }
+    }
+
+    private _financingRate: number;
+    get financingRate() { return this._financingRate; }
+    set financingRate(val: number) {
+        if (val != this._financingRate) {
+            this._financingRate = val;
+            this.emit();
+        }
+    }
+
+    private _financingNPER: number;
+    get financingNPER() { return this._financingNPER; }
+    set financingNPER(val: number) {
+        if (val != this._financingNPER) {
+            this._financingNPER = val;
+            this.emit();
+        }
+    }
+
+    private _currentPropertyValue: number;
+    get currentPropertyValue() { return this._currentPropertyValue; }
+    set currentPropertyValue(val: number) {
+        if (val != this._currentPropertyValue) {
+            this._currentPropertyValue = val;
+            this.emit();
+        }
+    }
+
+    private _propertyValueChange: number;
+    get propertyValueChange() { return this._propertyValueChange; }
+    set propertyValueChange(val: number) {
+        if (val != this._propertyValueChange) {
+            this._propertyValueChange = val;
+            this.emit();
+        }
+    }
+
+    private _investmentPeriod: number;
+    get investmentPeriod() { return this._investmentPeriod; }
+    set investmentPeriod(val: number) {
+        if (val != this._investmentPeriod) {
+            this._investmentPeriod = val;
+            this.emit();
+        }
+    }
 
     additionalCosts: AdditionalCost;
     rent: Rent;
@@ -95,11 +154,7 @@ export class Inversion {
     }
 
     get cashFlowValues() {
-        const numbers: number[] = [];
-
-        for (let i = 1; i <= this.investmentPeriod * 12; i++) {
-            numbers.push(i);
-        }
+        const numbers = ArrayHelper.range(1, this.investmentPeriod * 12);
 
         const effectiveChange = 1 + MathHelpers.monthlyRate(this.rent.yearlyChange);
         const pmt = numbers.map(_ => this.PMT);
@@ -114,5 +169,19 @@ export class Inversion {
 
         const merged = ArrayHelper.merge(arr);
         return merged;
+    }
+
+    get yearlyCashFlowTable() {
+        const effectiveChange = 1 + MathHelpers.monthlyRate(this.rent.yearlyChange);
+
+        const table = ArrayHelper
+            .range(1, this.investmentPeriod)
+            .map(y => [
+                y,
+                MathHelpers.seriesSumFromOrgan(this.rent.monthlyIncome, effectiveChange, 12, (y - 1) * 12) / 12,
+                -this.PMT
+            ]);
+
+        return table;
     }
 }
