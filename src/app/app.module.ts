@@ -15,6 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AbsPipe } from './misc/abs.pipe';
 
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { FileReaderComponent } from './file-reader/file-reader.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     InversionComponent,
     ThousandsDirective,
     PercentageValueAccessor,
-    AbsPipe
+    AbsPipe,
+    FileReaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Inversion } from '../models/inversion';
 import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
+import { DataReaderService } from '../services/data-reader.service';
+import { DefaultsService } from '../services/defaults.service';
 
 @Component({
   selector: 'app-inversion',
@@ -9,7 +11,7 @@ import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces
 })
 export class InversionComponent implements OnInit {
 
-  inversion: Inversion = new Inversion();
+  inversion: Inversion;
 
   public barChart: GoogleChartInterface = {
     chartType: 'Bar',
@@ -22,16 +24,16 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor() {
-    this.inversion.propertyCost = 200000;
-
-    this.inversion.financing = 150000;
-    this.inversion.financingRate = 0.06;
-    this.inversion.financingNPER = 20;
-
-    this.inversion.investmentPeriod = 10;
-    this.inversion.currentPropertyValue = 250000;
-    this.inversion.propertyValueChange = 0.03;
+  constructor(private fileReader: DataReaderService,defaultsService: DefaultsService) {
+    this.inversion = defaultsService.getDefaultInversion();
+    
+    this.fileReader.inversionStream.subscribe(inversion=>{
+      if(inversion){
+          this.inversion.copyFrom(inversion);
+          this.buildChart();
+      }
+    });
+    
   }
 
   ngOnInit() {

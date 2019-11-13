@@ -5,8 +5,9 @@ import { MathHelpers } from '../misc/math-helpers';
 import { ArrayHelper } from '../misc/array-helper';
 import { ChangeNotifier } from './change-notifier';
 import { EventEmitter } from '@angular/core';
+import { ICopyable } from './icopyable';
 
-export class Inversion implements ChangeNotifier {
+export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
 
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
@@ -74,35 +75,8 @@ export class Inversion implements ChangeNotifier {
         }
     }
 
-    additionalCosts: AdditionalCost;
-    rent: Rent;
-
-    constructor() {
-        this.additionalCosts = new AdditionalCost(this);
-        this.additionalCosts.financTaxes = 0.025;
-        this.additionalCosts.appraisal = 400;
-        this.additionalCosts.mortgageFees = 0.0175;
-        this.additionalCosts.spainVAT = 1.21;
-        this.additionalCosts.israelVAT = 1.17;
-        this.additionalCosts.purchaseTax = 0.06;
-        this.additionalCosts.diligensReports = 0.015;
-        this.additionalCosts.notary = 0.01;
-        this.additionalCosts.touristUsePermission = 2000;
-        this.additionalCosts.lawyers = 0.005;
-        this.additionalCosts.legal = 300;
-        this.additionalCosts.REJFees = 0.05;
-        this.additionalCosts.propertySize = 40;
-        this.additionalCosts.renovationCostPerM = 400;
-        this.additionalCosts.accesseories = 1000;
-        this.additionalCosts.renovationManagement = 0.15;
-        this.additionalCosts.unpredicted = 4000;
-
-        this.rent = new Rent();
-        this.rent.dailyRent = 70;
-        this.rent.yearlyChange = 0.03;
-        this.rent.occupancyPercentage = 0.8;
-        this.rent.managementFees = 0.2;
-    }
+    additionalCosts: AdditionalCost = new AdditionalCost(this);
+    rent: Rent = new Rent();
 
     get totalCost() {
         return this.propertyCost + this.additionalCosts.total;
@@ -184,4 +158,20 @@ export class Inversion implements ChangeNotifier {
 
         return table;
     }
+
+    copyFrom(other: Inversion) {
+        if (!other) return;
+        
+        this._propertyCost = other.propertyCost;
+        this._financing = other.financing;
+        this._financingRate = other.financingRate;
+        this._financingNPER = other.financingNPER;
+        this._currentPropertyValue = other.currentPropertyValue;
+        this._propertyValueChange = other.propertyValueChange;
+        this._investmentPeriod = other.investmentPeriod;
+
+        this.rent.copyFrom(other.rent);
+        this.additionalCosts.copyFrom(other.additionalCosts);
+    }
+
 }

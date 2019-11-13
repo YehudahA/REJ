@@ -1,7 +1,8 @@
 import { EventEmitter } from '@angular/core';
 import { ChangeNotifier } from './change-notifier';
+import { ICopyable } from './icopyable';
 
-export class Rent  implements ChangeNotifier {
+export class Rent implements ChangeNotifier, ICopyable<Rent> {
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
@@ -43,5 +44,14 @@ export class Rent  implements ChangeNotifier {
 
     get monthlyIncome() {
         return (this.dailyRent * this.occupancyPercentage * 365 * (1 - this.managementFees) / 12) - 200;
+    }
+
+    copyFrom(other: Rent) {
+        if (!other) return;
+
+        this._dailyRent = other.dailyRent;
+        this._occupancyPercentage = other.occupancyPercentage;
+        this._managementFees = other.managementFees;
+        this._yearlyChange = other.yearlyChange;
     }
 }

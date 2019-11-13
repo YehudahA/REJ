@@ -1,8 +1,9 @@
 import { Inversion } from './inversion';
 import { ChangeNotifier } from './change-notifier';
 import { EventEmitter } from '@angular/core';
+import { ICopyable } from './icopyable';
 
-export class AdditionalCost implements ChangeNotifier {
+export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost> {
 
     constructor(private inversion: Inversion) { }
 
@@ -203,5 +204,27 @@ export class AdditionalCost implements ChangeNotifier {
             this.additionalTotal +
             this.renovationTotal +
             (this.unpredicted || 0);
+    }
+
+    copyFrom(other: AdditionalCost) {
+        if (!other) return;
+        
+        this._financTaxes = other.financTaxes;
+        this._appraisal = other.appraisal;
+        this._mortgageFees = other.mortgageFees;
+        this._spainVAT = other.spainVAT;
+        this._israelVAT = other.israelVAT;
+        this._purchaseTax = other.purchaseTax;
+        this._diligensReports = other.diligensReports;
+        this._notary = other.notary;
+        this._touristUsePermission = other.touristUsePermission;
+        this._lawyers = other.lawyers;
+        this._legal = other.legal;
+        this._REJFees = other.REJFees;
+        this._propertySize = other.propertySize;
+        this._renovationCostPerM = other.renovationCostPerM;
+        this._accesseories = other.accesseories;
+        this._renovationManagement = other.renovationManagement;
+        this._unpredicted = other.unpredicted;
     }
 }
