@@ -16,6 +16,7 @@ import { AbsPipe } from './misc/abs.pipe';
 
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { FileReaderComponent } from './file-reader/file-reader.component';
+import { IntegerValueAccessor } from './misc/integer-value-accessor';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FileReaderComponent } from './file-reader/file-reader.component';
     InversionComponent,
     ThousandsDirective,
     PercentageValueAccessor,
+    IntegerValueAccessor,
     AbsPipe,
     FileReaderComponent
   ],
