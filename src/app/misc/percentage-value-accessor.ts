@@ -66,7 +66,9 @@ export class PercentageValueAccessor implements ControlValueAccessor {
    */
   writeValue(value: number): void {
     // The value needs to be normalized for IE9, otherwise it is set to 'null' when null
-    const normalizedValue = value == null ? 0 : (value * 100).toFixed(2);
+    let fractionDigits = (this._elementRef.nativeElement as HTMLInputElement).dataset.fractionDigits || "2";
+
+    const normalizedValue = value == null ? 0 : (value * 100).toFixed(+fractionDigits);
     this._renderer.setProperty(this._elementRef.nativeElement, 'value', normalizedValue);
   }
 
