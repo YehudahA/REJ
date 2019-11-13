@@ -226,10 +226,14 @@
                     </div>
                 </div>
 
-                <mat-card-footer>
-                    <label class="total-label">Total</label>
-                    <label>{{inversion.additionalCosts.renovationTotal  | number:'1.0-0'}}</label>
-                </mat-card-footer>
+                <div class="card-total-row">
+                    <label class="card-total-row-label">Total</label>
+
+                    <div class="calc-form-field">
+                        <div class="calc-form-result">{{inversion.additionalCosts.renovationTotal | number:'1.0-0'}}
+                        </div>
+                    </div>
+                </div>
 
             </mat-card>
 
@@ -312,7 +316,8 @@
         <div>
             <mat-form-field appearance="standard">
                 <mat-label>Occupancy</mat-label>
-                <input matInput [(ngModel)]="inversion.rent.occupancyPercentage" type="number" percentage data-fraction-digits="0" />
+                <input matInput [(ngModel)]="inversion.rent.occupancyPercentage" type="number" percentage
+                    data-fraction-digits="0" />
                 <span matSuffix>%</span>
             </mat-form-field>
         </div>
