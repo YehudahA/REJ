@@ -5,6 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // material
+import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
@@ -38,6 +39,7 @@ import { IntegerValueAccessor } from './misc/integer-value-accessor';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatExpansionModule,
     MatInputModule,
     MatCardModule,

@@ -1,4 +1,6 @@
-<div>
-    <label>Open file...</label>
-    <input (change)="fileLoaded($event.target)" type="file" />
-<div>
+<button mat-button>
+    <label>
+        <span>Open File...</span>
+        <input id="file-loader-input" (change)="fileLoaded($event.target)" type="file" />
+    </label>
+</button>
