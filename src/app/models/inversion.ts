@@ -162,13 +162,13 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     copyFrom(other: Inversion) {
         if (!other) return;
         
-        this._propertyCost = other.propertyCost;
-        this._financing = other.financing;
-        this._financingRate = other.financingRate;
-        this._financingNPER = other.financingNPER;
-        this._currentPropertyValue = other.currentPropertyValue;
-        this._propertyValueChange = other.propertyValueChange;
-        this._investmentPeriod = other.investmentPeriod;
+        this._propertyCost = other._propertyCost;
+        this._financing = other._financing;
+        this._financingRate = other._financingRate;
+        this._financingNPER = other._financingNPER;
+        this._currentPropertyValue = other._currentPropertyValue;
+        this._propertyValueChange = other._propertyValueChange;
+        this._investmentPeriod = other._investmentPeriod;
 
         this.rent.copyFrom(other.rent);
         this.additionalCosts.copyFrom(other.additionalCosts);

@@ -209,22 +209,22 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
     copyFrom(other: AdditionalCost) {
         if (!other) return;
         
-        this._financTaxes = other.financTaxes;
-        this._appraisal = other.appraisal;
-        this._mortgageFees = other.mortgageFees;
-        this._spainVAT = other.spainVAT;
-        this._israelVAT = other.israelVAT;
-        this._purchaseTax = other.purchaseTax;
-        this._diligensReports = other.diligensReports;
-        this._notary = other.notary;
-        this._touristUsePermission = other.touristUsePermission;
-        this._lawyers = other.lawyers;
-        this._legal = other.legal;
-        this._REJFees = other.REJFees;
-        this._propertySize = other.propertySize;
-        this._renovationCostPerM = other.renovationCostPerM;
-        this._accesseories = other.accesseories;
-        this._renovationManagement = other.renovationManagement;
-        this._unpredicted = other.unpredicted;
+        this._financTaxes = other._financTaxes;
+        this._appraisal = other._appraisal;
+        this._mortgageFees = other._mortgageFees;
+        this._spainVAT = other._spainVAT;
+        this._israelVAT = other._israelVAT;
+        this._purchaseTax = other._purchaseTax;
+        this._diligensReports = other._diligensReports;
+        this._notary = other._notary;
+        this._touristUsePermission = other._touristUsePermission;
+        this._lawyers = other._lawyers;
+        this._legal = other._legal;
+        this._REJFees = other._REJFees;
+        this._propertySize = other._propertySize;
+        this._renovationCostPerM = other._renovationCostPerM;
+        this._accesseories = other._accesseories;
+        this._renovationManagement = other._renovationManagement;
+        this._unpredicted = other._unpredicted;
     }
 }

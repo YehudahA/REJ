@@ -49,9 +49,9 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
     copyFrom(other: Rent) {
         if (!other) return;
 
-        this._dailyRent = other.dailyRent;
-        this._occupancyPercentage = other.occupancyPercentage;
-        this._managementFees = other.managementFees;
-        this._yearlyChange = other.yearlyChange;
+        this._dailyRent = other._dailyRent;
+        this._occupancyPercentage = other._occupancyPercentage;
+        this._managementFees = other._managementFees;
+        this._yearlyChange = other._yearlyChange;
     }
 }

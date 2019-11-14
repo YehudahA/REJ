@@ -24,16 +24,16 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor(private fileReader: DataReaderService,defaultsService: DefaultsService) {
+  constructor(private fileReader: DataReaderService, defaultsService: DefaultsService) {
     this.inversion = defaultsService.getDefaultInversion();
-    
-    this.fileReader.inversionStream.subscribe(inversion=>{
-      if(inversion){
-          this.inversion.copyFrom(inversion);
-          this.buildChart();
+
+    this.fileReader.inversionStream.subscribe(inversion => {
+      if (inversion) {
+        this.inversion.copyFrom(inversion);
+        this.buildChart();
       }
     });
-    
+
   }
 
   ngOnInit() {
@@ -54,4 +54,19 @@ export class InversionComponent implements OnInit {
     }
   }
 
+  save() {
+    const a = document.createElement("a");
+
+    const copy = new Inversion();
+    copy.copyFrom(this.inversion);
+    delete copy.changeEmitter;
+    delete copy.rent.changeEmitter;
+    delete copy.additionalCosts.changeEmitter
+    delete copy.additionalCosts["inversion"];
+    
+    const file = new Blob([JSON.stringify(copy)], { type: "text/json" });
+    a.href = URL.createObjectURL(file);
+    a.download = "inversion.REJ";
+    a.click();
+  }
 }
