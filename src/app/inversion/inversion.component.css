@@ -91,8 +91,4 @@ mat-expansion-panel mat-card-title {
         display: inline-block;
         page-break-inside: avoid;
     }
-
-    .dont-print{
-        display: none;
-    }
 }
