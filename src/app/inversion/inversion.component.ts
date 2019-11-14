@@ -3,6 +3,7 @@ import { Inversion } from '../models/inversion';
 import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
 import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
+import {saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-inversion',
@@ -55,8 +56,6 @@ export class InversionComponent implements OnInit {
   }
 
   save() {
-    const a = document.createElement("a");
-
     const copy = new Inversion();
     copy.copyFrom(this.inversion);
     delete copy.changeEmitter;
@@ -64,9 +63,7 @@ export class InversionComponent implements OnInit {
     delete copy.additionalCosts.changeEmitter
     delete copy.additionalCosts["inversion"];
     
-    const file = new Blob([JSON.stringify(copy)], { type: "text/json" });
-    a.href = URL.createObjectURL(file);
-    a.download = "inversion.REJ";
-    a.click();
+    const blob = new Blob([JSON.stringify(copy)], { type: "text/json" });
+    saveAs(blob, "inversion.REJ");
   }
 }
