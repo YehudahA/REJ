@@ -1,0 +1,15 @@
+#header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#app-title {
+    margin-inline-start: 8px;
+    flex: 1;
+}
+
+#app-logo {
+    width: 150px;
+    margin-inline-end: auto;
+}
