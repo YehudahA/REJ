@@ -4,6 +4,7 @@ import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces
 import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
 import {saveAs } from 'file-saver';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-inversion',
@@ -25,7 +26,7 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor(private fileReader: DataReaderService, defaultsService: DefaultsService) {
+  constructor(private fileReader: DataReaderService, defaultsService: DefaultsService, menuService: MenuService) {
     this.inversion = defaultsService.getDefaultInversion();
 
     this.fileReader.inversionStream.subscribe(inversion => {
@@ -35,6 +36,7 @@ export class InversionComponent implements OnInit {
       }
     });
 
+    menuService.save.subscribe(()=>this.save());
   }
 
   ngOnInit() {

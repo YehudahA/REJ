@@ -1,0 +1,8 @@
+<button mat-button class="dont-print" color="primary">
+    <label>
+        <span>Open File...</span>
+        <input id="file-loader-input" (change)="fileLoaded($event.target)" type="file" />
+    </label>
+</button>
+
+<button class="dont-print" color="primary" (click)="save()" mat-button>Save</button>

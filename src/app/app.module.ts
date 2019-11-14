@@ -21,8 +21,8 @@ import { InversionComponent } from './inversion/inversion.component';
 import { ThousandsDirective } from './directives/thousands.directive';
 import { PercentageValueAccessor } from './misc/percentage-value-accessor';
 import { AbsPipe } from './misc/abs.pipe';
-import { FileReaderComponent } from './file-reader/file-reader.component';
 import { IntegerValueAccessor } from './misc/integer-value-accessor';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { IntegerValueAccessor } from './misc/integer-value-accessor';
     PercentageValueAccessor,
     IntegerValueAccessor,
     AbsPipe,
-    FileReaderComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,
