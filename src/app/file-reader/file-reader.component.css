@@ -1,3 +1,10 @@
 #file-loader-input {
   display: none;
 }
+
+@media print  
+{
+    .dont-print{
+        display: none;
+    }
+}

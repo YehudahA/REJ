@@ -80,3 +80,19 @@ mat-expansion-panel mat-card-title {
     text-align: right;
     letter-spacing: 0.05em;   
 }
+
+@media print  
+{
+    main {
+        display: table;
+      }
+      
+    .mat-card {
+        display: inline-block;
+        page-break-inside: avoid;
+    }
+
+    .dont-print{
+        display: none;
+    }
+}
