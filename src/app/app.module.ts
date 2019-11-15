@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 // material
 import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
@@ -40,6 +41,7 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatDividerModule,
     MatExpansionModule,
     MatInputModule,
     MatCardModule,

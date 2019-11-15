@@ -1,94 +1,130 @@
 main {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.mat-card {
-    margin: 15px;
-    border: 1px solid blue;
+.main-mat-card {
+  margin: 15px;
+  padding: 0;
+}
+
+.main-mat-card .mat-card-header {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  padding: 8px 20px;
+  color: rgba(0, 0, 0, 0.54);
+  background: rgba(0, 0, 0, 0.03);
+  height: 40px;
+}
+
+.main-mat-card .mat-card-header .mat-card-title {
+  margin-bottom: 0;
+}
+
+.main-mat-card .mat-card-content {
+  padding: 16px;
 }
 
 .mat-card-footer {
-    padding : 16px;;
+  margin: 0;
+  padding: 16px;
 }
 
 mat-form-field {
-    width: 180px;
+  width: 180px;
 }
 
 mat-expansion-panel mat-card-title {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .mat-input-element {
-    letter-spacing: 0.04em;   
+  letter-spacing: 0.04em;
 }
 
 .flex-push-end {
-    margin-inline-start: auto;
+  margin-inline-start: auto;
 }
 
 #total-additionalcost {
-    margin-inline-end: 15px;
+  margin-inline-end: 15px;
 }
 
 .output-element {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .input-with-calc {
-    display: flex;
+  display: flex;
 }
 
 .calc-form-field {
-    margin-inline-start: 5px;
-    width: 180px;
-    margin-bottom: 18.8125px;
-    padding-bottom: .5em;
-    padding-inline-end: 1.5em;
-    border-radius: 4px 4px 0 0;
-    background-color:     rgba(0,0,0,.04);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    letter-spacing: 0.05em;
+  margin-inline-start: 5px;
+  width: 180px;
+  margin-bottom: 18.8125px;
+  padding-bottom: 0.5em;
+  padding-inline-end: 1.5em;
+  border-radius: 4px 4px 0 0;
+  background-color: rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  letter-spacing: 0.05em;
 }
 
 .card-total-row .calc-form-field {
-    margin-inline-start: auto;
+  margin-inline-start: auto;
 }
 
 .card-total-row {
-    font-weight: 500;
-    display: flex;
-    height: 70px;
+  font-weight: 500;
+  display: flex;
+  height: 70px;
 }
 
-.card-total-row-label{
-    padding-top: 1.5em;
-    padding-inline-start: .5em;
+.card-total-row-label {
+  padding-top: 1.5em;
+  padding-inline-start: 0.5em;
 }
 
-.total-label{
-    width: 180px;
-    display: inline-block;
+.total-label {
+  width: 180px;
+  display: inline-block;
 }
 
 .total-value {
-    display: inline-block;
-    width: 80px;
-    text-align: right;
-    letter-spacing: 0.05em;   
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  letter-spacing: 0.05em;
 }
 
-@media print  
-{
-    main {
-        display: table;
-      }
-      
-    .mat-card {
-        display: inline-block;
-        page-break-inside: avoid;
-    }
+#financing-percentage{
+    margin-inline-start: 12px;
+    width: 80px;
+}
+
+#result-card .mat-card-content{
+    padding-top: 0;
+}
+
+#result-card .result-group {
+    padding: 16px 0;
+}
+
+#result-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@media print {
+  main {
+    display: table;
+  }
+
+  .main-mat-card {
+    display: inline-block;
+    page-break-inside: avoid;
+  }
 }
