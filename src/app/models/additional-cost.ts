@@ -2,31 +2,18 @@ import { Inversion } from './inversion';
 import { ChangeNotifier } from './change-notifier';
 import { EventEmitter } from '@angular/core';
 import { ICopyable } from './icopyable';
+import { Settings } from './settings';
 
 export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost> {
 
-    constructor(private inversion: Inversion) { }
+    constructor(private inversion: Inversion,private settings: Settings) { }
 
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
-    private _israelVAT: number;
-    get israelVAT() { return this._israelVAT; }
-    set israelVAT(val: number) {
-        if (val != this._israelVAT) {
-            this._israelVAT = val;
-            this.emit();
-        }
-    }
+    get israelVAT() { return this.settings.israelVat; }
 
-    private _spainVAT: number;
-    get spainVAT() { return this._spainVAT; }
-    set spainVAT(val: number) {
-        if (val != this._spainVAT) {
-            this._spainVAT = val;
-            this.emit();
-        }
-    }
+    get spainVAT() { return this.settings.spainVat; }
 
     private _financTaxes: number;
     get financTaxes() { return this._financTaxes; }
@@ -212,8 +199,6 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
         this._financTaxes = other._financTaxes;
         this._appraisal = other._appraisal;
         this._mortgageFees = other._mortgageFees;
-        this._spainVAT = other._spainVAT;
-        this._israelVAT = other._israelVAT;
         this._purchaseTax = other._purchaseTax;
         this._diligensReports = other._diligensReports;
         this._notary = other._notary;

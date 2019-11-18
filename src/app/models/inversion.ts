@@ -6,8 +6,11 @@ import { ArrayHelper } from '../misc/array-helper';
 import { ChangeNotifier } from './change-notifier';
 import { EventEmitter } from '@angular/core';
 import { ICopyable } from './icopyable';
+import { Settings } from './settings';
 
 export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
+
+    constructor(private settings: Settings) { }
 
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
@@ -75,8 +78,8 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         }
     }
 
-    additionalCosts: AdditionalCost = new AdditionalCost(this);
-    rent: Rent = new Rent();
+    additionalCosts: AdditionalCost = new AdditionalCost(this, this.settings);
+    rent: Rent = new Rent(this.settings);
 
     get totalCost() {
         return this.propertyCost + this.additionalCosts.total;
@@ -161,7 +164,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
 
     copyFrom(other: Inversion) {
         if (!other) return;
-        
+
         this._propertyCost = other._propertyCost;
         this._financing = other._financing;
         this._financingRate = other._financingRate;

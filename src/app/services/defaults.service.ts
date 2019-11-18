@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { Rent } from '../models/rent';
 import { Inversion } from '../models/inversion';
 import { AdditionalCost } from '../models/additional-cost';
+import { Settings } from '../models/settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DefaultsService {
-  getDefaultInversion(){
-    const inversion = new Inversion();
-    
+  getDefaultInversion() {
+    const settings: Settings = {
+      spainVat: 1.21,
+      israelVat: 1.17
+    };
+    const inversion = new Inversion(settings);
+
     inversion.propertyCost = 200000;
 
     inversion.financing = 150000;
@@ -20,12 +25,10 @@ export class DefaultsService {
     inversion.currentPropertyValue = 250000;
     inversion.propertyValueChange = 0.03;
 
-    inversion.additionalCosts = new AdditionalCost(inversion);
+    inversion.additionalCosts = new AdditionalCost(inversion, settings);
     inversion.additionalCosts.financTaxes = 0.025;
     inversion.additionalCosts.appraisal = 400;
     inversion.additionalCosts.mortgageFees = 0.0175;
-    inversion.additionalCosts.spainVAT = 1.21;
-    inversion.additionalCosts.israelVAT = 1.17;
     inversion.additionalCosts.purchaseTax = 0.06;
     inversion.additionalCosts.diligensReports = 0.015;
     inversion.additionalCosts.notary = 0.01;

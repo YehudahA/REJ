@@ -58,7 +58,7 @@ export class InversionComponent implements OnInit {
   }
 
   save() {
-    const copy = new Inversion();
+    const copy = new Inversion(undefined);
     copy.copyFrom(this.inversion);
     delete copy.changeEmitter;
     delete copy.rent.changeEmitter;
