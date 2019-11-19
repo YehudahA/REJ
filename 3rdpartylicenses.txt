@@ -95,6 +95,8 @@ THE SOFTWARE.
 
 @angular/material/form-field
 
+@angular/material/radio
+
 @angular/material/toolbar
 
 @angular/platform-browser
