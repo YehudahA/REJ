@@ -10,6 +10,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 // other ligs
@@ -40,12 +41,16 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    
+    // material
     MatButtonModule,
     MatDividerModule,
     MatExpansionModule,
     MatInputModule,
     MatCardModule,
+    MatRadioModule,
     MatToolbarModule,
+
     Ng2GoogleChartsModule
   ],
   providers: [],

@@ -316,15 +316,22 @@
 
     <mat-card class="main-mat-card">
         <mat-card-header>
-            <mat-card-title>Rent</mat-card-title>
+            <mat-card-title>Incomes</mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
 
             <div>
+                <mat-radio-group aria-label="Rent Model" [(ngModel)]="inversion.rent.rentModel" id="rent-model">
+                    <mat-radio-button class="example-radio-button" *ngFor="let key of rentModelKeys" [value]="key">
+                        {{key}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Daily Rent</mat-label>
-                    <input matInput [(ngModel)]="inversion.rent.dailyRent" type="number" />
+                    <mat-label>Rent Price</mat-label>
+                    <input matInput [(ngModel)]="inversion.rent.rentPrice" type="number" integer/>
                 </mat-form-field>
             </div>
             <div>
@@ -344,14 +351,21 @@
             </div>
             <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Management Fees (%)</mat-label>
+                    <mat-label>Management Fees</mat-label>
                     <input matInput [(ngModel)]="inversion.rent.managementFees" type="number" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Expenses</mat-label>
+                    <input matInput [(ngModel)]="inversion.rent.otherExpenses" type="number" />
                 </mat-form-field>
             </div>
         </mat-card-content>
 
         <mat-card-footer>
-            <label class="total-label">Monthly Rent</label>
+            <label class="total-label">Total Monthly Income</label>
             <label>{{inversion.rent.monthlyIncome | number:'1.0-0'}}</label>
         </mat-card-footer>
     </mat-card>
@@ -398,7 +412,7 @@
                 <h3 class="mat-h3">Total Cashflow</h3>
 
                 <div>
-                    <label class="total-label">Total Rent</label>
+                    <label class="total-label">Total Incomes</label>
                     <label class="total-value">{{inversion.totalRent | number:'1.0-0'}}</label>
                 </div>
 
@@ -408,10 +422,10 @@
                 </div>
 
                 <div>
-                    <label class="total-label">Total Income</label>
-                    <label class="total-value">{{inversion.totalCachflowIncome | number:'1.0-0'}}</label>
+                    <label class="total-label">Net Income</label>
+                    <label class="total-value">{{inversion.totalNetIncome | number:'1.0-0'}}</label>
                 </div>
-            
+
             </div>
 
             <mat-divider></mat-divider>
@@ -433,7 +447,7 @@
                     <label class="total-label">Total</label>
                     <span class="total-value">{{inversion.totalExitBalance | number:'1.0-0'}}</span>
                 </div>
-            
+
             </div>
 
             <mat-divider></mat-divider>

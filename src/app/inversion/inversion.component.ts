@@ -5,6 +5,7 @@ import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
 import {saveAs } from 'file-saver';
 import { MenuService } from '../services/menu.service';
+import { RentModel } from '../models/rent';
 
 @Component({
   selector: 'app-inversion',
@@ -67,5 +68,9 @@ export class InversionComponent implements OnInit {
     
     const blob = new Blob([JSON.stringify(copy)], { type: "text/json" });
     saveAs(blob, "inversion.REJ");
+  }
+
+  get rentModelKeys(){
+    return Object.values(RentModel);
   }
 }

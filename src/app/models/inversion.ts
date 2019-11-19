@@ -102,7 +102,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         return MathHelpers.seriesSum(this.rent.monthlyIncome, 1 + effectiveChange, this.investmentPeriod * 12);
     }
 
-    get totalCachflowIncome() {
+    get totalNetIncome() {
         return this.totalRent + this.financialExpenses;
     }
 
@@ -120,7 +120,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     }
 
     get nominalGain() {
-        return -this.selfCapital + this.totalCachflowIncome + this.totalExitBalance;
+        return -this.selfCapital + this.totalNetIncome + this.totalExitBalance;
     }
 
     get IRR() {

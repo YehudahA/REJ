@@ -1,16 +1,35 @@
 import { EventEmitter } from '@angular/core';
 import { ChangeNotifier } from './change-notifier';
 import { ICopyable } from './icopyable';
+import { Settings } from './settings';
 
 export class Rent implements ChangeNotifier, ICopyable<Rent> {
+    constructor(private settings: Settings) { }
+
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
-    private _dailyRent: number;
-    get dailyRent() { return this._dailyRent; }
-    set dailyRent(val: number) {
-        if (val != this._dailyRent) {
-            this._dailyRent = val;
+    private _rentModel: RentModel = RentModel.Daily;
+    get rentModel() { return this._rentModel; }
+    set rentModel(val: RentModel) {
+        if (val != this._rentModel) {
+            this._rentModel = val;
+
+            if (this._rentPrice) {
+                this._rentPrice *= val == RentModel.Daily ? (1 / 30) : 30;
+            }
+
+            this.emit();
+        }
+
+    }
+
+    private _rentPrice: number;
+    get rentPrice() { return this._rentPrice; }
+    set rentPrice(val:
+        number) {
+        if (val != this._rentPrice) {
+            this._rentPrice = val;
             this.emit();
         }
     }
@@ -42,16 +61,40 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
         }
     }
 
+    private _otherExpenses: number;
+    get otherExpenses() { return this._otherExpenses; }
+    set otherExpenses(val: number) {
+        if (val != this._otherExpenses) {
+            this._otherExpenses = val;
+            this.emit();
+        }
+    }
+
     get monthlyIncome() {
-        return (this.dailyRent * this.occupancyPercentage * 365 * (1 - this.managementFees) / 12) - 200;
+
+        let monthlyPrice
+            = this.rentModel == RentModel.Monthly ?
+                this.rentPrice :
+                this.rentPrice * 365.25 / 12;
+        
+        monthlyPrice *= this.occupancyPercentage;
+        const fees = monthlyPrice * this._managementFees * this.settings.spainVat;
+        return monthlyPrice - fees - (this.otherExpenses || 0);
     }
 
     copyFrom(other: Rent) {
         if (!other) return;
 
-        this._dailyRent = other._dailyRent;
+        this._rentModel = other._rentModel;
+        this._rentPrice = other._rentPrice;
         this._occupancyPercentage = other._occupancyPercentage;
         this._managementFees = other._managementFees;
         this._yearlyChange = other._yearlyChange;
+        this._otherExpenses = other._otherExpenses;
     }
+}
+
+export enum RentModel {
+    Daily = "Daily",
+    Monthly = "Monthly"
 }

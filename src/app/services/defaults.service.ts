@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Rent } from '../models/rent';
+import { Rent, RentModel } from '../models/rent';
 import { Inversion } from '../models/inversion';
 import { AdditionalCost } from '../models/additional-cost';
 import { Settings } from '../models/settings';
@@ -42,12 +42,14 @@ export class DefaultsService {
     inversion.additionalCosts.renovationManagement = 0.15;
     inversion.additionalCosts.unpredicted = 4000;
 
-    inversion.rent = new Rent();
-    inversion.rent.dailyRent = 70;
+    inversion.rent = new Rent(settings);
+    inversion.rent.rentModel = RentModel.Daily;
+    inversion.rent.rentPrice = 70;
     inversion.rent.yearlyChange = 0.03;
     inversion.rent.occupancyPercentage = 0.8;
     inversion.rent.managementFees = 0.2;
-
+    inversion.rent.otherExpenses = 200;
+    
     return inversion;
   }
 }

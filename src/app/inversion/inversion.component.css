@@ -100,22 +100,31 @@ mat-expansion-panel mat-card-title {
   letter-spacing: 0.05em;
 }
 
-#financing-percentage{
-    margin-inline-start: 12px;
-    width: 80px;
+#financing-percentage {
+  margin-inline-start: 12px;
+  width: 80px;
 }
 
-#result-card .mat-card-content{
-    padding-top: 0;
+#result-card .mat-card-content {
+  padding-top: 0;
 }
 
 #result-card .result-group {
-    padding: 16px 0;
+  padding: 16px 0;
 }
 
 #result-card h3 {
-    font-size: 16px;
-    font-weight: 500;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#rent-model {
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+#rent-model mat-radio-button {
+  margin-inline-end: 20px;
 }
 
 @media print {
