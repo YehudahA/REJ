@@ -168,7 +168,8 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
             this.touristUsePermissionTotal +
             this.lawyersTotal +
             (this.legal || 0) +
-            this.REJFeesTotal;
+            this.REJFeesTotal +
+            (this.unpredicted || 0);
     }
 
     get renovationTotal() {
@@ -180,8 +181,7 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
     get total() {
         return this.financTotal +
             this.additionalTotal +
-            this.renovationTotal +
-            (this.unpredicted || 0);
+            this.renovationTotal;
     }
 
     copyFrom(other: AdditionalCost) {

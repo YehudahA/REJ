@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+.margin-15{
+  margin: 15px;
+}
+
 .main-mat-card .mat-card-header {
   align-content: center;
   align-items: center;
@@ -49,7 +53,7 @@ mat-expansion-panel mat-card-title {
 }
 
 #total-additionalcost {
-  margin-inline-end: 15px;
+  margin-inline-start: 15px;
 }
 
 .output-element {
