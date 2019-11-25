@@ -16,6 +16,7 @@ export class DefaultsService {
     const inversion = new Inversion(settings);
 
     inversion.propertyCost = 200000;
+    inversion.propertySize = 40;
 
     inversion.financing = 150000;
     inversion.financingRate = 0.06;
@@ -36,7 +37,6 @@ export class DefaultsService {
     inversion.additionalCosts.lawyers = 0.005;
     inversion.additionalCosts.legal = 300;
     inversion.additionalCosts.REJFees = 0.05;
-    inversion.additionalCosts.propertySize = 40;
     inversion.additionalCosts.renovationCostPerM = 400;
     inversion.additionalCosts.accesseories = 1000;
     inversion.additionalCosts.renovationManagement = 0.15;

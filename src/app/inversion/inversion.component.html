@@ -19,6 +19,20 @@
                 </mat-form-field>
             </div>
 
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Property Size</mat-label>
+                    <input matInput [(ngModel)]="inversion.propertySize" type="number" />
+                    <span matSuffix>M<sup>2</sup></span>
+                </mat-form-field>
+
+            </div>
+
+            <div class="input-like">
+                <label>Price Per M<sup>2</sup></label>
+                <span>{{inversion.propertyCost / inversion.propertySize | number:'1.0-0'}}</span>
+            </div>
+
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <label>Additional Cost</label>
@@ -195,14 +209,6 @@
 
                 <mat-card>
                     <mat-card-title>Renovation Costs (Est.)</mat-card-title>
-
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Property Size</mat-label>
-                            <input matInput [(ngModel)]="inversion.additionalCosts.propertySize" type="number" />
-                        </mat-form-field>
-
-                    </div>
 
                     <div class="input-with-calc">
                         <mat-form-field appearance="standard">

@@ -106,6 +106,15 @@ mat-expansion-panel mat-card-title {
   letter-spacing: 0.05em;
 }
 
+.input-like{
+  width: 180px;
+  display: flex;
+}
+
+.input-like > label{
+  flex-grow: 1;
+}
+
 #financing-percentage {
   margin-inline-start: 12px;
   width: 80px;

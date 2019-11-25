@@ -32,6 +32,15 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         }
     }
 
+    private _propertySize: number;
+    get propertySize() { return this._propertySize; }
+    set propertySize(val: number) {
+        if (val != this._propertySize) {
+            this._propertySize = val;
+            this.emit();
+        }
+    }
+
     private _financing: number;
     get financing() { return this._financing; }
     set financing(val: number) {
@@ -175,6 +184,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
 
         this._clientName = other._clientName;
         this._propertyCost = other._propertyCost;
+        this._propertySize = other._propertySize;
         this._financing = other._financing;
         this._financingRate = other._financingRate;
         this._financingNPER = other._financingNPER;

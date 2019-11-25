@@ -114,15 +114,6 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
     }
     get REJFeesTotal() { return (this.REJFees * this.inversion.propertyCost * (this.israelVAT + this.spainVAT) / 2) || 0; }
 
-    private _propertySize: number;
-    get propertySize() { return this._propertySize; }
-    set propertySize(val: number) {
-        if (val != this._propertySize) {
-            this._propertySize = val;
-            this.emit();
-        }
-    }
-
     private _renovationCostPerM: number;
     get renovationCostPerM() { return this._renovationCostPerM; }
     set renovationCostPerM(val: number) {
@@ -131,7 +122,7 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
             this.emit();
         }
     }
-    get renovationCostPropertyTotal() { return this.propertySize * this.renovationCostPerM || 0; }
+    get renovationCostPropertyTotal() { return this.inversion.propertySize * this.renovationCostPerM || 0; }
 
     private _accesseories: number;
     get accesseories() { return this._accesseories; }
@@ -206,7 +197,6 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
         this._lawyers = other._lawyers;
         this._legal = other._legal;
         this._REJFees = other._REJFees;
-        this._propertySize = other._propertySize;
         this._renovationCostPerM = other._renovationCostPerM;
         this._accesseories = other._accesseories;
         this._renovationManagement = other._renovationManagement;
