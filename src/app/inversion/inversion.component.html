@@ -33,6 +33,14 @@
                 <span>{{inversion.propertyCost / inversion.propertySize | number:'1.0-0'}}</span>
             </div>
 
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Address</mat-label>
+                    <input matInput [(ngModel)]="inversion.propertyAddress"/>
+                </mat-form-field>
+
+            </div>
+
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <label>Additional Cost</label>
