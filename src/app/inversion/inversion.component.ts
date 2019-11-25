@@ -6,6 +6,7 @@ import { DefaultsService } from '../services/defaults.service';
 import {saveAs } from 'file-saver';
 import { MenuService } from '../services/menu.service';
 import { RentModel } from '../models/rent';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-inversion',
@@ -27,7 +28,10 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor(private fileReader: DataReaderService, defaultsService: DefaultsService, menuService: MenuService) {
+  constructor(private fileReader: DataReaderService, 
+    private titleService: Title,
+    defaultsService: DefaultsService, 
+    menuService: MenuService) {
     this.inversion = defaultsService.getDefaultInversion();
 
     this.fileReader.inversionStream.subscribe(inversion => {
@@ -41,10 +45,14 @@ export class InversionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inversion.changeEmitter.subscribe(() => this.buildChart());
+    this.inversion.changeEmitter.subscribe(() => {
+      this.buildChart();
+      this.setTitle();
+    });
     this.inversion.additionalCosts.changeEmitter.subscribe(() => this.buildChart());
     this.inversion.rent.changeEmitter.subscribe(() => this.buildChart());
 
+    this.setTitle();
     this.buildChart();
   }
 
@@ -67,10 +75,14 @@ export class InversionComponent implements OnInit {
     delete copy.additionalCosts["inversion"];
     
     const blob = new Blob([JSON.stringify(copy)], { type: "text/json" });
-    saveAs(blob, "inversion.REJ");
+    saveAs(blob, (copy.clientName || 'inversoin') + ".rej");
   }
 
   get rentModelKeys(){
     return Object.values(RentModel);
+  }
+
+  setTitle(){
+    this.titleService.setTitle(this.inversion.clientName || 'Inversion Calculator');
   }
 }

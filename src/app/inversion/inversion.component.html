@@ -1,3 +1,10 @@
+<section class="client-name">
+    <mat-form-field appearance="standard">
+        <mat-label>Client Name</mat-label>
+        <input matInput [(ngModel)]="inversion.clientName" />
+    </mat-form-field>
+</section>
+
 <main>
     <mat-card class="main-mat-card">
         <mat-card-header>
@@ -331,7 +338,7 @@
             <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Rent Price</mat-label>
-                    <input matInput [(ngModel)]="inversion.rent.rentPrice" type="number" integer/>
+                    <input matInput [(ngModel)]="inversion.rent.rentPrice" type="number" integer />
                 </mat-form-field>
             </div>
             <div>

@@ -15,6 +15,14 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
+    private _clientName: string;
+    get clientName() { return this._clientName; }
+    set clientName(val: string) {
+        if (val != this._clientName) {
+        this._clientName = val;
+            this.emit();
+        }
+    }
     private _propertyCost: number;
     get propertyCost() { return this._propertyCost; }
     set propertyCost(val: number) {
@@ -165,6 +173,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     copyFrom(other: Inversion) {
         if (!other) return;
 
+        this._clientName = other._clientName;
         this._propertyCost = other._propertyCost;
         this._financing = other._financing;
         this._financingRate = other._financingRate;
