@@ -51,7 +51,8 @@ export class DefaultsService {
     inversion.rent.yearlyChange = 0.03;
     inversion.rent.occupancyPercentage = 0.8;
     inversion.rent.managementFees = 0.2;
-    inversion.rent.otherExpenses = 200;
+    inversion.rent.monthlyExpenses = 200;
+    inversion.rent.yearlyExpenses = 3000;
 
     return inversion;
   }

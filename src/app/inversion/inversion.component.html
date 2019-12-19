@@ -449,8 +449,14 @@
             </div>
             <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Expenses</mat-label>
-                    <input matInput [(ngModel)]="inversion.rent.otherExpenses" type="number" />
+                    <mat-label>Monthly Expenses</mat-label>
+                    <input matInput [(ngModel)]="inversion.rent.monthlyExpenses" type="number" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Yearly Expenses</mat-label>
+                    <input matInput [(ngModel)]="inversion.rent.yearlyExpenses" type="number" />
                 </mat-form-field>
             </div>
         </mat-card-content>

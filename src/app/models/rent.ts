@@ -61,11 +61,20 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
         }
     }
 
-    private _otherExpenses: number;
-    get otherExpenses() { return this._otherExpenses; }
-    set otherExpenses(val: number) {
-        if (val != this._otherExpenses) {
-            this._otherExpenses = val;
+    private _monthlyExpenses: number;
+    get monthlyExpenses() { return this._monthlyExpenses; }
+    set monthlyExpenses(val: number) {
+        if (val != this._monthlyExpenses) {
+        this._monthlyExpenses = val;
+            this.emit();
+        }
+    }
+
+    private _yearlyExpenses: number;
+    get yearlyExpenses() { return this._yearlyExpenses; }
+    set yearlyExpenses(val: number) {
+        if (val != this._yearlyExpenses) {
+        this._yearlyExpenses = val;
             this.emit();
         }
     }
@@ -79,7 +88,7 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
         
         monthlyPrice *= this.occupancyPercentage;
         const fees = monthlyPrice * this._managementFees * this.settings.spainVat;
-        return monthlyPrice - fees - (this.otherExpenses || 0);
+        return monthlyPrice - fees - (this.monthlyExpenses || 0) - (this.yearlyExpenses / 12 || 0);
     }
 
     copyFrom(other: Rent) {
@@ -90,7 +99,8 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
         this._occupancyPercentage = other._occupancyPercentage;
         this._managementFees = other._managementFees;
         this._yearlyChange = other._yearlyChange;
-        this._otherExpenses = other._otherExpenses;
+        this.monthlyExpenses = other.monthlyExpenses;
+        this.yearlyExpenses = other.yearlyExpenses;
     }
 }
 
