@@ -459,6 +459,13 @@
                     <input matInput [(ngModel)]="inversion.rent.yearlyExpenses" type="number" />
                 </mat-form-field>
             </div>
+            <div *ngIf="inversion.showTax">
+                <mat-form-field appearance="standard">
+                    <mat-label>Tax</mat-label>
+                    <input matInput [(ngModel)]="inversion.rent.incomeTax" type="number" step="0.01" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
         </mat-card-content>
 
         <mat-card-footer>
@@ -491,6 +498,14 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Yearly Value Change</mat-label>
                     <input matInput [(ngModel)]="inversion.propertyValueChange" type="number" step="0.01" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="inversion.showTax">
+                <mat-form-field appearance="standard">
+                    <mat-label>Tax</mat-label>
+                    <input matInput [(ngModel)]="inversion.valueTax" type="number" step="0.01" percentage />
                     <span matSuffix>%</span>
                 </mat-form-field>
             </div>
@@ -535,6 +550,11 @@
                     <span class="total-value">{{inversion.futurePropertyValue | number:'1.0-0'}}</span>
                 </div>
 
+                <div *ngIf="inversion.showTax">
+                    <label class="total-label">Tax:</label>
+                    <span class="total-value">{{inversion.totalExitTax | number:'1.0-0'}}</span>
+                </div>
+                
                 <div>
                     <label class="total-label">Loan Balance:</label>
                     <span class="total-value">{{inversion.loanExitBalance | abs | number:'1.0-0'}}</span>

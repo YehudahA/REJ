@@ -15,11 +15,13 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
+    showTax: boolean;
+    
     private _clientName: string;
     get clientName() { return this._clientName; }
     set clientName(val: string) {
         if (val != this._clientName) {
-        this._clientName = val;
+            this._clientName = val;
             this.emit();
         }
     }
@@ -46,7 +48,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     get propertyAddress() { return this._propertyAddress; }
     set propertyAddress(val: string) {
         if (val != this._propertyAddress) {
-        this._propertyAddress = val;
+            this._propertyAddress = val;
             this.emit();
         }
     }
@@ -105,6 +107,15 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         }
     }
 
+    private _valueTax: number;
+    get valueTax() { return this._valueTax; }
+    set valueTax(val: number) {
+        if (val != this._valueTax) {
+            this._valueTax = val;
+            this.emit();
+        }
+    }
+
     additionalCosts: AdditionalCost = new AdditionalCost(this, this.settings);
     rent: Rent = new Rent(this.settings);
 
@@ -143,7 +154,11 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     }
 
     get totalExitBalance() {
-        return this.futurePropertyValue + this.loanExitBalance;
+        return this.futurePropertyValue + this.loanExitBalance - (this.showTax ? this.totalExitTax : 0);
+    }
+
+    get totalExitTax() {
+        return (this.futurePropertyValue - this.totalCost) * this.valueTax;
     }
 
     get nominalGain() {

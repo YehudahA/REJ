@@ -3,10 +3,11 @@ import { Inversion } from '../models/inversion';
 import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
 import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
-import {saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 import { MenuService } from '../services/menu.service';
 import { RentModel } from '../models/rent';
 import { Title } from '@angular/platform-browser';
+import { ShowTaxService } from '../services/show-tax.service';
 
 @Component({
   selector: 'app-inversion',
@@ -28,11 +29,16 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor(private fileReader: DataReaderService, 
+  constructor(private fileReader: DataReaderService,
     private titleService: Title,
-    defaultsService: DefaultsService, 
-    menuService: MenuService) {
+    showTaxService: ShowTaxService,
+    defaultsService: DefaultsService,
+    menuService: MenuService,
+  ) {
+
     this.inversion = defaultsService.getDefaultInversion();
+
+    showTaxService.showTax.subscribe(b => this.setShowTax(b));
 
     this.fileReader.inversionStream.subscribe(inversion => {
       if (inversion) {
@@ -41,7 +47,11 @@ export class InversionComponent implements OnInit {
       }
     });
 
-    menuService.save.subscribe(()=>this.save());
+    menuService.save.subscribe(() => this.save());
+  }
+
+  setShowTax(b: boolean) {
+    this.inversion.showTax = this.inversion.rent.showTax = b;
   }
 
   ngOnInit() {
@@ -73,16 +83,16 @@ export class InversionComponent implements OnInit {
     delete copy.rent.changeEmitter;
     delete copy.additionalCosts.changeEmitter
     delete copy.additionalCosts["inversion"];
-    
+
     const blob = new Blob([JSON.stringify(copy)], { type: "text/json" });
     saveAs(blob, (copy.clientName || 'inversoin') + ".rej");
   }
 
-  get rentModelKeys(){
+  get rentModelKeys() {
     return Object.values(RentModel);
   }
 
-  setTitle(){
+  setTitle() {
     this.titleService.setTitle(this.inversion.clientName || 'Inversion Calculator');
   }
 }

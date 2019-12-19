@@ -1,6 +1,9 @@
 
 export class MathHelpers {
     static seriesSum(a1: number, q: number, n: number) {
+        if (q === 1) {
+            return a1 * n;
+        }
         return a1 * (Math.pow(q, n) - 1) / (q - 1);
     }
 

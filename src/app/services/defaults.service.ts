@@ -26,6 +26,8 @@ export class DefaultsService {
     inversion.currentPropertyValue = 250000;
     inversion.propertyValueChange = 0.03;
 
+    inversion.valueTax = 0.19;
+    
     inversion.additionalCosts = new AdditionalCost(inversion, settings);
     inversion.additionalCosts.financTaxes = 0.025;
     inversion.additionalCosts.appraisal = 400;
@@ -53,6 +55,7 @@ export class DefaultsService {
     inversion.rent.managementFees = 0.2;
     inversion.rent.monthlyExpenses = 200;
     inversion.rent.yearlyExpenses = 3000;
+    inversion.rent.incomeTax = 0.24;
 
     return inversion;
   }

@@ -9,6 +9,8 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
 
+    showTax: boolean;
+
     private _rentModel: RentModel = RentModel.Daily;
     get rentModel() { return this._rentModel; }
     set rentModel(val: RentModel) {
@@ -65,7 +67,7 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
     get monthlyExpenses() { return this._monthlyExpenses; }
     set monthlyExpenses(val: number) {
         if (val != this._monthlyExpenses) {
-        this._monthlyExpenses = val;
+            this._monthlyExpenses = val;
             this.emit();
         }
     }
@@ -74,21 +76,40 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
     get yearlyExpenses() { return this._yearlyExpenses; }
     set yearlyExpenses(val: number) {
         if (val != this._yearlyExpenses) {
-        this._yearlyExpenses = val;
+            this._yearlyExpenses = val;
             this.emit();
         }
     }
 
-    get monthlyIncome() {
+    private _incomeTax: number;
+    get incomeTax() { return this._incomeTax; }
+    set incomeTax(val: number) {
+        if (val != this._incomeTax) {
+            this._incomeTax = val;
+            this.emit();
+        }
+    }
 
+    private get effectiveRent() {
         let monthlyPrice
             = this.rentModel == RentModel.Monthly ?
                 this.rentPrice :
                 this.rentPrice * 365.25 / 12;
-        
+
         monthlyPrice *= this.occupancyPercentage;
-        const fees = monthlyPrice * this._managementFees * this.settings.spainVat;
-        return monthlyPrice - fees - (this.monthlyExpenses || 0) - (this.yearlyExpenses / 12 || 0);
+
+        if (this.incomeTax && this.showTax) {
+            monthlyPrice *= (1 - this.incomeTax);
+        }
+        
+        return monthlyPrice;
+    }
+
+    get monthlyIncome() {
+        const monthlyRent = this.effectiveRent;
+
+        const fees = monthlyRent * this._managementFees * this.settings.spainVat;
+        return monthlyRent - fees - (this.monthlyExpenses || 0) - (this.yearlyExpenses / 12 || 0);
     }
 
     copyFrom(other: Rent) {
@@ -99,8 +120,9 @@ export class Rent implements ChangeNotifier, ICopyable<Rent> {
         this._occupancyPercentage = other._occupancyPercentage;
         this._managementFees = other._managementFees;
         this._yearlyChange = other._yearlyChange;
-        this.monthlyExpenses = other.monthlyExpenses;
-        this.yearlyExpenses = other.yearlyExpenses;
+        this._monthlyExpenses = other._monthlyExpenses;
+        this._yearlyExpenses = other._yearlyExpenses;
+        this._incomeTax = other._incomeTax;
     }
 }
 
