@@ -6,7 +6,7 @@ import { Settings } from './settings';
 
 export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost> {
 
-    constructor(private inversion: Inversion,private settings: Settings) { }
+    constructor(private inversion: Inversion, private settings: Settings) { }
 
     changeEmitter = new EventEmitter<any>();
     emit() { this.changeEmitter.emit(null); }
@@ -75,6 +75,16 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
     }
     get notaryTotal() { return this.notary * this.inversion.propertyCost * this.spainVAT || 0; }
 
+    private _translation: number;
+    get translation() { return this._translation; }
+    set translation(val: number) {
+        if (val != this._translation) {
+            this._translation = val;
+            this.emit();
+        }
+    }
+    get translationTotal() { return this.translation * this.spainVAT || 0; }
+
     private _touristUsePermission: number;
     get touristUsePermission() { return this._touristUsePermission; }
     set touristUsePermission(val: number) {
@@ -124,6 +134,16 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
     }
     get renovationCostPropertyTotal() { return this.inversion.propertySize * this.renovationCostPerM || 0; }
 
+    private _plasnArchitects: number;
+    get plasnArchitects() { return this._plasnArchitects; }
+    set plasnArchitects(val: number) {
+        if (val != this._plasnArchitects) {
+            this._plasnArchitects = val;
+            this.emit();
+        }
+    }
+    get plasnArchitectsTotal() { return this.plasnArchitects * this.spainVAT || 0; }
+
     private _accesseories: number;
     get accesseories() { return this._accesseories; }
     set accesseories(val: number) {
@@ -155,6 +175,15 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
         }
     }
 
+    private _other: number;
+    get other() { return this._other; }
+    set other(val: number) {
+        if (val != this._other) {
+            this._other = val;
+            this.emit();
+        }
+    }
+
     get financTotal() {
         return this.financTaxesTotal +
             this.appraisalTotal +
@@ -165,16 +194,19 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
         return this.purchaseTaxTotal +
             this.diligensReportsTotal +
             this.notaryTotal +
+            this.translationTotal +
             this.touristUsePermissionTotal +
             this.lawyersTotal +
             (this.legal || 0) +
             this.REJFeesTotal +
-            (this.unpredicted || 0);
+            (this.unpredicted || 0) +
+            (this.other || 0);
     }
 
     get renovationTotal() {
         return this.renovationCostPropertyTotal +
             this.accesseoriesTotal +
+            this.plasnArchitectsTotal +
             this.renovationManagementTotal;
     }
 
@@ -186,20 +218,23 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
 
     copyFrom(other: AdditionalCost) {
         if (!other) return;
-        
+
         this._financTaxes = other._financTaxes;
         this._appraisal = other._appraisal;
         this._mortgageFees = other._mortgageFees;
         this._purchaseTax = other._purchaseTax;
         this._diligensReports = other._diligensReports;
         this._notary = other._notary;
+        this._translation = other._translation;
         this._touristUsePermission = other._touristUsePermission;
         this._lawyers = other._lawyers;
         this._legal = other._legal;
         this._REJFees = other._REJFees;
         this._renovationCostPerM = other._renovationCostPerM;
+        this._plasnArchitects = other._plasnArchitects;
         this._accesseories = other._accesseories;
         this._renovationManagement = other._renovationManagement;
         this._unpredicted = other._unpredicted;
+        this._other = other._other;
     }
 }

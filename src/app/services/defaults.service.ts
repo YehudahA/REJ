@@ -33,14 +33,17 @@ export class DefaultsService {
     inversion.additionalCosts.purchaseTax = 0.06;
     inversion.additionalCosts.diligensReports = 0.015;
     inversion.additionalCosts.notary = 0.01;
+    inversion.additionalCosts.translation = 100;
     inversion.additionalCosts.touristUsePermission = 2000;
     inversion.additionalCosts.lawyers = 0.005;
     inversion.additionalCosts.legal = 300;
     inversion.additionalCosts.REJFees = 0.05;
     inversion.additionalCosts.renovationCostPerM = 400;
+    inversion.additionalCosts.plasnArchitects = 500;
     inversion.additionalCosts.accesseories = 1000;
     inversion.additionalCosts.renovationManagement = 0.15;
     inversion.additionalCosts.unpredicted = 4000;
+    inversion.additionalCosts.other = 1000;
 
     inversion.rent = new Rent(settings);
     inversion.rent.rentModel = RentModel.Daily;
@@ -49,7 +52,7 @@ export class DefaultsService {
     inversion.rent.occupancyPercentage = 0.8;
     inversion.rent.managementFees = 0.2;
     inversion.rent.otherExpenses = 200;
-    
+
     return inversion;
   }
 }

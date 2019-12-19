@@ -178,6 +178,18 @@
 
                     <div class="input-with-calc">
                         <mat-form-field appearance="standard">
+                            <mat-label>Translations</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.translation" type="number" />
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">{{inversion.additionalCosts.translationTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
                             <mat-label>Tourist Use Permission</mat-label>
                             <input matInput [(ngModel)]="inversion.additionalCosts.touristUsePermission"
                                 type="number" />
@@ -240,6 +252,18 @@
                         </div>
                     </div>
 
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Other</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.other" type="number" />
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">{{inversion.additionalCosts.other | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-total-row">
                         <label class="card-total-row-label">Total</label>
 
@@ -280,6 +304,19 @@
                         <div class="calc-form-field">
                             <div class="calc-form-result">
                                 {{inversion.additionalCosts.accesseoriesTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Plans & Architects</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.plasnArchitects" type="number" />
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">
+                                {{inversion.additionalCosts.plasnArchitectsTotal | number:'1.0-0'}}
                             </div>
                         </div>
                     </div>
