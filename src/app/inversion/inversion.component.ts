@@ -54,6 +54,7 @@ export class InversionComponent implements OnInit {
 
   setShowTax(b: boolean) {
     this.inversion.showTax = this.inversion.rent.showTax = b;
+    this.buildChart();
   }
 
   ngOnInit() {
