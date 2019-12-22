@@ -24,8 +24,10 @@ export class InversionComponent implements OnInit {
     options: {
       chart: {
         title: 'Cash flow',
-        subtitle: 'Finance Expenses vs Rent Income'
-      }
+        subtitle: 'Finance Expenses vs Rent Income',
+      },
+      width: 600,
+      height: 400
     }
   };
 
