@@ -31,8 +31,9 @@ export class InversionComponent implements OnInit {
     }
   };
 
-  constructor(private fileReader: DataReaderService,
+  constructor(
     private titleService: Title,
+    fileReader: DataReaderService,
     showTaxService: ShowTaxService,
     defaultsService: DefaultsService,
     menuService: MenuService,
@@ -42,7 +43,14 @@ export class InversionComponent implements OnInit {
 
     showTaxService.showTax.subscribe(b => this.setShowTax(b));
 
-    this.fileReader.inversionStream.subscribe(inversion => {
+    this.inversion.changeEmitter.subscribe(() => {
+      this.buildChart();
+      this.setTitle();
+    });
+    this.inversion.additionalCosts.changeEmitter.subscribe(() => this.buildChart());
+    this.inversion.rent.changeEmitter.subscribe(() => this.buildChart());
+
+    fileReader.inversionStream.subscribe(inversion => {
       if (inversion) {
         this.inversion.copyFrom(inversion);
         this.buildChart();
@@ -58,13 +66,6 @@ export class InversionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inversion.changeEmitter.subscribe(() => {
-      this.buildChart();
-      this.setTitle();
-    });
-    this.inversion.additionalCosts.changeEmitter.subscribe(() => this.buildChart());
-    this.inversion.rent.changeEmitter.subscribe(() => this.buildChart());
-
     this.setTitle();
     this.buildChart();
   }
@@ -74,8 +75,9 @@ export class InversionComponent implements OnInit {
       ["Year", "Income", "Expences"], ...this.inversion.yearlyCashFlowTable
     ];
 
-    if (this.barChart.component) {
-      this.barChart.component.draw();
+    const chartComponent = this.barChart.component;
+    if (chartComponent && chartComponent.wrapper) {
+      chartComponent.draw();
     }
   }
 
