@@ -3,11 +3,11 @@ import { Inversion } from '../models/inversion';
 import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
 import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
-import { saveAs } from 'file-saver';
 import { MenuService } from '../services/menu.service';
 import { RentModel } from '../models/rent';
 import { Title } from '@angular/platform-browser';
 import { ShowTaxService } from '../services/show-tax.service';
+import { FileDownloaderService } from '../services/file-downloader.service';
 
 @Component({
   selector: 'app-inversion',
@@ -33,6 +33,7 @@ export class InversionComponent implements OnInit {
 
   constructor(
     private titleService: Title,
+    private fileDownloader: FileDownloaderService,
     fileReader: DataReaderService,
     showTaxService: ShowTaxService,
     defaultsService: DefaultsService,
@@ -89,8 +90,7 @@ export class InversionComponent implements OnInit {
     delete copy.additionalCosts.changeEmitter
     delete copy.additionalCosts["inversion"];
 
-    const blob = new Blob([JSON.stringify(copy)], { type: "text/json" });
-    saveAs(blob, (copy.clientName || 'inversoin') + ".rej");
+    this.fileDownloader.download(copy,  (copy.clientName || 'inversoin') + ".rej");
   }
 
   get rentModelKeys() {
