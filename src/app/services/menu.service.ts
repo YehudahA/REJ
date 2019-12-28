@@ -6,6 +6,7 @@ import {  } from 'rxjs';
 })
 export class MenuService {
 
-  save: EventEmitter<null> = new EventEmitter<null>();
+  readonly save = new EventEmitter<null>();
+  readonly currencyChange = new EventEmitter<number>();
   
 }

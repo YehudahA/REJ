@@ -1,3 +1,12 @@
-#file-loader-input {
-    display: none;
-  }
+#hidden {
+  display: none;
+}
+
+.currency-selector {
+  margin-inline-start: auto;
+  font-size: 14px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}

@@ -16,6 +16,7 @@ import { FileDownloaderService } from '../services/file-downloader.service';
 })
 export class InversionComponent implements OnInit {
 
+  private selectedCurrency = 1;
   inversion: Inversion;
 
   public barChart: GoogleChartInterface = {
@@ -59,6 +60,8 @@ export class InversionComponent implements OnInit {
     });
 
     menuService.save.subscribe(() => this.save());
+
+    menuService.currencyChange.subscribe((v: number) => this.selectedCurrency = v);
   }
 
   setShowTax(b: boolean) {
@@ -90,11 +93,15 @@ export class InversionComponent implements OnInit {
     delete copy.additionalCosts.changeEmitter
     delete copy.additionalCosts["inversion"];
 
-    this.fileDownloader.download(copy,  (copy.clientName || 'inversoin') + ".rej");
+    this.fileDownloader.download(copy, (copy.clientName || 'inversoin') + ".rej");
   }
 
   get rentModelKeys() {
     return Object.values(RentModel);
+  }
+
+  get currency() {
+    return this.selectedCurrency == 1 ? '&euro;' : '&#8362;';
   }
 
   setTitle() {
