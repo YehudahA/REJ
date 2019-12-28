@@ -196,7 +196,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         const table = ArrayHelper
             .range(1, this.investmentPeriod)
             .map(y => [
-                y,
+                y.toString(),
                 MathHelpers.seriesSumFromOrgan(this.rent.monthlyIncome, effectiveChange, 12, (y - 1) * 12) / 12,
                 -this.PMT
             ]);
