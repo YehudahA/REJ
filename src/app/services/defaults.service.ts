@@ -27,7 +27,7 @@ export class DefaultsService {
     inversion.propertyValueChange1st = 0.05;
     inversion.propertyValueChange2nd = 0.03;
     inversion.propertyValueChange1thPeriod = 5;
-    
+
     inversion.valueTax = 0.19;
     
     inversion.additionalCosts = new AdditionalCost(inversion, settings);
@@ -47,14 +47,14 @@ export class DefaultsService {
     inversion.additionalCosts.accesseories = 1000;
     inversion.additionalCosts.renovationManagement = 0.15;
     inversion.additionalCosts.unpredicted = 4000;
-    inversion.additionalCosts.other = 1000;
+    inversion.additionalCosts.other = 0;
 
     inversion.rent = new Rent(settings);
     inversion.rent.rentModel = RentModel.Daily;
     inversion.rent.rentPrice = 70;
     inversion.rent.yearlyChange = 0.03;
-    inversion.rent.occupancyPercentage = 0.8;
-    inversion.rent.managementFees = 0.2;
+    inversion.rent.occupancyPercentage = 1;
+    inversion.rent.managementFees = 0.1;
     inversion.rent.monthlyExpenses = 200;
     inversion.rent.yearlyExpenses = 3000;
     inversion.rent.incomeTax = 0.24;
