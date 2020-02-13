@@ -103,7 +103,10 @@ export class AdditionalCost implements ChangeNotifier, ICopyable<AdditionalCost>
             this.emit();
         }
     }
-    get lawyersTotal() { return (this.lawyers * this.inversion.propertyCost * this.spainVAT || 0) + 300; }
+    get lawyersTotal() {
+        const amount = Math.max((this.lawyers || 0) * this.inversion.propertyCost, 1000);
+        return amount * this.spainVAT;
+    }
 
     private _legal: number;
     get legal() { return this._legal; }
