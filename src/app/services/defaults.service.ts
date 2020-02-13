@@ -24,8 +24,10 @@ export class DefaultsService {
 
     inversion.investmentPeriod = 10;
     inversion.currentPropertyValue = 250000;
-    inversion.propertyValueChange = 0.03;
-
+    inversion.propertyValueChange1st = 0.05;
+    inversion.propertyValueChange2nd = 0.03;
+    inversion.propertyValueChange1thPeriod = 5;
+    
     inversion.valueTax = 0.19;
     
     inversion.additionalCosts = new AdditionalCost(inversion, settings);

@@ -85,11 +85,29 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         }
     }
 
-    private _propertyValueChange: number;
-    get propertyValueChange() { return this._propertyValueChange; }
-    set propertyValueChange(val: number) {
-        if (val != this._propertyValueChange) {
-            this._propertyValueChange = val;
+    private _propertyValueChange1st: number;
+    get propertyValueChange1st() { return this._propertyValueChange1st; }
+    set propertyValueChange1st(val: number) {
+        if (val != this._propertyValueChange1st) {
+            this._propertyValueChange1st = val;
+            this.emit();
+        }
+    }
+
+    private _propertyValueChange1thPeriod: number;
+    get propertyValueChange1thPeriod() { return this._propertyValueChange1thPeriod; }
+    set propertyValueChange1thPeriod(val: number) {
+        if (val != this._propertyValueChange1thPeriod) {
+            this._propertyValueChange1thPeriod = val;
+            this.emit();
+        }
+    }
+
+    private _propertyValueChange2nd: number;
+    get propertyValueChange2nd() { return this._propertyValueChange2nd; }
+    set propertyValueChange2nd(val: number) {
+        if (val != this._propertyValueChange2nd) {
+            this._propertyValueChange2nd = val;
             this.emit();
         }
     }
@@ -141,7 +159,9 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     }
 
     get futurePropertyValue() {
-        return this.currentPropertyValue * Math.pow((1 + +this.propertyValueChange), this.investmentPeriod);
+        const valueAt1thPeriod = Math.pow(1 + this.propertyValueChange1st, this._propertyValueChange1thPeriod);
+        const exitValue = Math.pow(1 + this.propertyValueChange2nd, this.investmentPeriod - this._propertyValueChange1thPeriod);
+        return this.currentPropertyValue *  valueAt1thPeriod * exitValue;
     }
 
     get loanExitBalance() {
@@ -216,7 +236,9 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         this._financingRate = other._financingRate;
         this._financingNPER = other._financingNPER;
         this._currentPropertyValue = other._currentPropertyValue;
-        this._propertyValueChange = other._propertyValueChange;
+        this._propertyValueChange1st = other._propertyValueChange1st;
+        this._propertyValueChange2nd = other._propertyValueChange2nd;
+        this._propertyValueChange1thPeriod = other._propertyValueChange1thPeriod;
         this._investmentPeriod = other._investmentPeriod;
 
         this.rent.copyFrom(other.rent);

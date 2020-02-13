@@ -551,8 +551,24 @@
 
             <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Yearly Value Change</mat-label>
-                    <input matInput [(ngModel)]="inversion.propertyValueChange" type="number" step="0.01" percentage />
+                    <mat-label>Yearly Value Change 1st</mat-label>
+                    <input matInput [(ngModel)]="inversion.propertyValueChange1st" type="number" step="0.01" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>1st Period</mat-label>
+                    <input matInput [(ngModel)]="inversion.propertyValueChange1thPeriod" type="number" />
+                    <span matSuffix>Years</span>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Yearly Value Change 2nd</mat-label>
+                    <input matInput [(ngModel)]="inversion.propertyValueChange2nd" type="number" step="0.01" percentage />
                     <span matSuffix>%</span>
                 </mat-form-field>
             </div>
