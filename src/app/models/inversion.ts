@@ -17,14 +17,10 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
 
     showTax: boolean;
     
-    private _clientName: string;
-    get clientName() { return this._clientName; }
-    set clientName(val: string) {
-        if (val != this._clientName) {
-            this._clientName = val;
-            this.emit();
-        }
-    }
+    clientName: string;
+    date: Date = new Date();
+    propertyType: string;
+    remarks: string;
 
     private _propertyCost: number;
     get propertyCost() { return this._propertyCost; }
@@ -207,7 +203,11 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     copyFrom(other: Inversion) {
         if (!other) return;
 
-        this._clientName = other._clientName;
+        this.clientName = other.clientName;
+        this.date = other.date;
+        this.propertyType = other.propertyType;
+        this.remarks = other.remarks;
+
         this._propertyCost = other._propertyCost;
         this._propertySize = other._propertySize;
         this._propertyAddress = other._propertyAddress;

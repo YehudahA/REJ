@@ -5,13 +5,40 @@
             <mat-card-title>General</mat-card-title>
         </mat-card-header>
 
-        <mat-card-content>
-            <div class="client-name">
+        <mat-card-content class="card-content-2-cols">
+            <div>
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Client Name</mat-label>
+                        <input matInput [(ngModel)]="inversion.clientName" />
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Date</mat-label>
+                        <input matInput [(ngModel)]="inversion.date" type="date" />
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Property Type</mat-label>
+                        <input matInput [(ngModel)]="inversion.propertyType" />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-divider class="vertiacl-divider" [vertical]="true"></mat-divider>
+
+            <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Client Name</mat-label>
-                    <input matInput [(ngModel)]="inversion.clientName" />
+                    <mat-label>Remarks</mat-label>
+                    <textarea matInput [(ngModel)]="inversion.remarks" cdkTextareaAutosize
+                        cdkAutosizeMinRows="7"></textarea>
                 </mat-form-field>
             </div>
+
         </mat-card-content>
     </mat-card>
 
@@ -54,6 +81,62 @@
 
         </mat-card-content>
     </mat-card>
+
+    <mat-card class="main-mat-card">
+        <mat-card-header>
+            <mat-card-title>Financing</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Principal</mat-label>
+                    <input matInput [(ngModel)]="inversion.financing" type="number" required appThousands integer />
+                    <span matSuffix [innerHtml]="currency"></span>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard" id="financing-percentage">
+                    <mat-label></mat-label>
+
+                    <input matInput [ngModel]="inversion.financing / inversion.propertyCost"
+                        (ngModelChange)="inversion.financing = $event * inversion.propertyCost" type="number"
+                        step="0.01" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Rate</mat-label>
+                    <input matInput [(ngModel)]="inversion.financingRate" type="number" step="0.01" percentage />
+                    <span matSuffix>%</span>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Years</mat-label>
+                    <input matInput [(ngModel)]="inversion.financingNPER" type="number" />
+                    <span matSuffix>Years</span>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+            <div>
+                <label class="total-label">PMT</label>
+                <label class="total-value">{{inversion.PMT  | abs | number:'1.0-0'}}</label>
+            </div>
+
+            <div>
+                <label class="total-label">Self Captial</label>
+                <label class="total-value">{{inversion.selfCapital | number:'1.0-0'}}</label>
+            </div>
+
+        </mat-card-footer>
+    </mat-card>
+
 
 </section>
 
@@ -360,6 +443,9 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        *These costs vary by &#177;15%.
+                    </div>
                 </mat-card-content>
 
             </mat-card>
@@ -368,61 +454,6 @@
 </section>
 
 <section class="card-group">
-
-    <mat-card class="main-mat-card">
-        <mat-card-header>
-            <mat-card-title>Financing</mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content>
-
-            <div>
-                <mat-form-field appearance="standard">
-                    <mat-label>Principal</mat-label>
-                    <input matInput [(ngModel)]="inversion.financing" type="number" required appThousands integer />
-                    <span matSuffix [innerHtml]="currency"></span>
-                </mat-form-field>
-
-                <mat-form-field appearance="standard" id="financing-percentage">
-                    <mat-label></mat-label>
-
-                    <input matInput [ngModel]="inversion.financing / inversion.propertyCost"
-                        (ngModelChange)="inversion.financing = $event * inversion.propertyCost" type="number"
-                        step="0.01" percentage />
-                    <span matSuffix>%</span>
-                </mat-form-field>
-            </div>
-
-            <div>
-                <mat-form-field appearance="standard">
-                    <mat-label>Rate</mat-label>
-                    <input matInput [(ngModel)]="inversion.financingRate" type="number" step="0.01" percentage />
-                    <span matSuffix>%</span>
-                </mat-form-field>
-            </div>
-
-            <div>
-                <mat-form-field appearance="standard">
-                    <mat-label>Years</mat-label>
-                    <input matInput [(ngModel)]="inversion.financingNPER" type="number" />
-                    <span matSuffix>Years</span>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-
-        <mat-card-footer>
-            <div>
-                <label class="total-label">PMT</label>
-                <label class="total-value">{{inversion.PMT  | abs | number:'1.0-0'}}</label>
-            </div>
-
-            <div>
-                <label class="total-label">Self Captial</label>
-                <label class="total-value">{{inversion.selfCapital | number:'1.0-0'}}</label>
-            </div>
-
-        </mat-card-footer>
-    </mat-card>
 
     <mat-card class="main-mat-card">
         <mat-card-header>

@@ -1,3 +1,7 @@
+:host{
+  --card-content-end-padding: 26px;
+  --card-content-padding: 16px 16px var(--card-content-end-padding) 16px;
+}
 
 .card-group {
   display: flex;
@@ -28,12 +32,22 @@
 }
 
 .main-mat-card .mat-card-content {
-  padding: 16px;
+  padding: var(--card-content-padding);
+  padding-inline-end: var(--card-content-end-padding);
+}
+
+.card-content-2-cols{
+  display: flex;
+}
+
+.card-content-2-cols .vertiacl-divider{
+  margin: 4px 16px;
 }
 
 .mat-card-footer {
   margin: 0;
-  padding: 16px;
+  padding: var(--card-content-padding);
+  padding-inline-end: var(--card-content-end-padding);
 }
 
 mat-form-field {
