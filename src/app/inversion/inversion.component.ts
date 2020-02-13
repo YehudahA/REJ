@@ -76,7 +76,7 @@ export class InversionComponent implements OnInit {
 
   buildChart() {
     this.barChart.dataTable = [
-      ["Year", "Income", "Expences"], ...this.inversion.yearlyCashFlowTable
+      ["Year", "Income", "Expenses"], ...this.inversion.yearlyCashFlowTable
     ];
 
     const chartComponent = this.barChart.component;
