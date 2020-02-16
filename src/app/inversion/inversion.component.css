@@ -1,4 +1,4 @@
-:host{
+:host {
   --card-content-end-padding: 26px;
   --card-content-padding: 16px 16px var(--card-content-end-padding) 16px;
 }
@@ -13,7 +13,7 @@
   padding: 0;
 }
 
-.margin-15{
+.margin-15 {
   margin: 15px;
 }
 
@@ -36,11 +36,11 @@
   padding-inline-end: var(--card-content-end-padding);
 }
 
-.card-content-2-cols{
+.card-content-2-cols {
   display: flex;
 }
 
-.card-content-2-cols .vertiacl-divider{
+.card-content-2-cols .vertiacl-divider {
   margin: 4px 16px;
 }
 
@@ -119,12 +119,12 @@ mat-expansion-panel mat-card-title {
   letter-spacing: 0.05em;
 }
 
-.input-like{
+.input-like {
   width: 180px;
   display: flex;
 }
 
-.input-like > label{
+.input-like > label {
   flex-grow: 1;
 }
 
@@ -153,6 +153,10 @@ mat-expansion-panel mat-card-title {
 
 #rent-model mat-radio-button {
   margin-inline-end: 20px;
+}
+
+#remarks {
+  width: 20em;
 }
 
 @media print {
