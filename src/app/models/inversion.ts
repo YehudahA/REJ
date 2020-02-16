@@ -16,7 +16,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     emit() { this.changeEmitter.emit(null); }
 
     showTax: boolean;
-    
+
     clientName: string;
     date: Date = new Date();
     propertyType: string;
@@ -161,7 +161,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     get futurePropertyValue() {
         const valueAt1thPeriod = Math.pow(1 + this.propertyValueChange1st, this._propertyValueChange1thPeriod);
         const exitValue = Math.pow(1 + this.propertyValueChange2nd, this.investmentPeriod - this._propertyValueChange1thPeriod);
-        return this.currentPropertyValue *  valueAt1thPeriod * exitValue;
+        return this.currentPropertyValue * valueAt1thPeriod * exitValue;
     }
 
     get loanExitBalance() {
@@ -245,4 +245,13 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         this.additionalCosts.copyFrom(other.additionalCosts);
     }
 
+    changePropertyCost(newValue: number) {
+        const diff = this._propertyCost - newValue;
+
+        if (diff) {
+            this._propertyCost -= diff;
+            this._financing -= diff;
+            this.emit();
+        }
+    }
 }

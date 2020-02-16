@@ -51,7 +51,8 @@
             <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Property Cost</mat-label>
-                    <input matInput [(ngModel)]="inversion.propertyCost" type="number" required appThousands />
+                    <input matInput [ngModel]="inversion.propertyCost"
+                        (ngModelChange)="inversion.changePropertyCost($event)" type="number" required appThousands />
                     <span matSuffix [innerHtml]="currency"></span>
                 </mat-form-field>
             </div>
@@ -552,7 +553,8 @@
             <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Yearly Value Change 1st</mat-label>
-                    <input matInput [(ngModel)]="inversion.propertyValueChange1st" type="number" step="0.01" percentage />
+                    <input matInput [(ngModel)]="inversion.propertyValueChange1st" type="number" step="0.01"
+                        percentage />
                     <span matSuffix>%</span>
                 </mat-form-field>
             </div>
@@ -568,7 +570,8 @@
             <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Yearly Value Change 2nd</mat-label>
-                    <input matInput [(ngModel)]="inversion.propertyValueChange2nd" type="number" step="0.01" percentage />
+                    <input matInput [(ngModel)]="inversion.propertyValueChange2nd" type="number" step="0.01"
+                        percentage />
                     <span matSuffix>%</span>
                 </mat-form-field>
             </div>
