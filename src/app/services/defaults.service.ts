@@ -23,7 +23,7 @@ export class DefaultsService {
     inversion.financingNPER = 20;
 
     inversion.investmentPeriod = 10;
-    inversion.currentPropertyValue = 250000;
+    inversion.appreciationRate = 150;
     inversion.propertyValueChange1st = 0.05;
     inversion.propertyValueChange2nd = 0.03;
     inversion.propertyValueChange1thPeriod = 5;

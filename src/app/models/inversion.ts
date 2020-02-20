@@ -76,11 +76,11 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         }
     }
 
-    private _currentPropertyValue: number;
-    get currentPropertyValue() { return this._currentPropertyValue; }
-    set currentPropertyValue(val: number) {
-        if (val != this._currentPropertyValue) {
-            this._currentPropertyValue = val;
+    private _appreciationRate: number;
+    get appreciationRate() { return this._appreciationRate; }
+    set appreciationRate(val: number) {
+        if (val != this._appreciationRate) {
+            this._appreciationRate = val;
             this.emit();
         }
     }
@@ -161,7 +161,8 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
     get futurePropertyValue() {
         const valueAt1thPeriod = Math.pow(1 + this.propertyValueChange1st, this._propertyValueChange1thPeriod);
         const exitValue = Math.pow(1 + this.propertyValueChange2nd, this.investmentPeriod - this._propertyValueChange1thPeriod);
-        return this.currentPropertyValue * valueAt1thPeriod * exitValue;
+        const currentPropertyValue = this.propertyCost + this.additionalCosts.renovationTotal * this.appreciationRate / 100;
+        return currentPropertyValue * valueAt1thPeriod * exitValue;
     }
 
     get loanExitBalance() {
@@ -235,7 +236,7 @@ export class Inversion implements ChangeNotifier, ICopyable<Inversion> {
         this._financing = other._financing;
         this._financingRate = other._financingRate;
         this._financingNPER = other._financingNPER;
-        this._currentPropertyValue = other._currentPropertyValue;
+        this._appreciationRate = other._appreciationRate;
         this._propertyValueChange1st = other._propertyValueChange1st;
         this._propertyValueChange2nd = other._propertyValueChange2nd;
         this._propertyValueChange1thPeriod = other._propertyValueChange1thPeriod;

@@ -544,9 +544,9 @@
 
             <div>
                 <mat-form-field appearance="standard">
-                    <mat-label>Current Property Value</mat-label>
-                    <input matInput [(ngModel)]="inversion.currentPropertyValue" type="number" appThousands />
-                    <span matSuffix [innerHtml]="currency"></span>
+                    <mat-label>Appreciation Rate</mat-label>
+                    <input matInput [(ngModel)]="inversion.appreciationRate" type="number" />
+                    <span matSuffix>%</span>
                 </mat-form-field>
             </div>
 
