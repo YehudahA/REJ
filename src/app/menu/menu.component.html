@@ -1,12 +1,12 @@
 <mat-toolbar color="primary" class="mat-elevation-z4">
-    <button mat-button class="dont-print">
+    <button mat-button>
         <label>
             <span>Open File...</span>
-            <input class="hidden" (change)="fileLoaded($event.target)" type="file" hidden/>
+            <input (change)="fileLoaded($event.target)" type="file" hidden/>
         </label>
     </button>
 
-    <button class="dont-print" (click)="save()" mat-button>Save</button>
+    <button (click)="save()" mat-button>Save</button>
 
     <mat-radio-group class="currency-selector" (change)="changeCurrency($event.value)">
         <mat-radio-button value="1" checked>&euro;</mat-radio-button>
