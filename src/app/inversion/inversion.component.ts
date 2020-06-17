@@ -105,6 +105,6 @@ export class InversionComponent implements OnInit {
   }
 
   setTitle() {
-    this.titleService.setTitle(this.inversion.clientName || 'Inversion Calculator');
+    this.titleService.setTitle(this.inversion.clientName || 'Investment Simulation');
   }
 }
