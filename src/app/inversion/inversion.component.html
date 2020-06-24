@@ -217,6 +217,84 @@
 
             <mat-card class="main-mat-card">
                 <mat-card-header>
+                    <mat-card-title>Renovation Costs (Est.)</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Cost per Sq.M</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.renovationCostPerM" type="number" />
+                            <span matSuffix [innerHtml]="currency"></span>
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">
+                                {{inversion.additionalCosts.renovationCostPropertyTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Accessories & Appliances</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.accesseories" type="number" />
+                            <span matSuffix [innerHtml]="currency"></span>
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">
+                                {{inversion.additionalCosts.accesseoriesTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Plans & Architects</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.plasnArchitects" type="number" />
+                            <span matSuffix [innerHtml]="currency"></span>
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">
+                                {{inversion.additionalCosts.plasnArchitectsTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-with-calc">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Renovation Management</mat-label>
+                            <input matInput [(ngModel)]="inversion.additionalCosts.renovationManagement" type="number"
+                                step="0.01" percentage />
+                            <span matSuffix>%</span>
+                        </mat-form-field>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">
+                                {{inversion.additionalCosts.renovationManagementTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-total-row">
+                        <label class="card-total-row-label">Total</label>
+
+                        <div class="calc-form-field">
+                            <div class="calc-form-result">{{inversion.additionalCosts.renovationTotal | number:'1.0-0'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        *These costs vary by &#177;15%.
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+
+            <mat-card class="main-mat-card">
+                <mat-card-header>
                     <mat-card-title>Additional Costs</mat-card-title>
                 </mat-card-header>
 
@@ -368,84 +446,6 @@
                             <div class="calc-form-result">{{inversion.additionalCosts.additionalTotal | number:'1.0-0'}}
                             </div>
                         </div>
-                    </div>
-                </mat-card-content>
-
-            </mat-card>
-
-            <mat-card class="main-mat-card">
-                <mat-card-header>
-                    <mat-card-title>Renovation Costs (Est.)</mat-card-title>
-                </mat-card-header>
-
-                <mat-card-content>
-                    <div class="input-with-calc">
-                        <mat-form-field appearance="standard">
-                            <mat-label>Cost per Sq.M</mat-label>
-                            <input matInput [(ngModel)]="inversion.additionalCosts.renovationCostPerM" type="number" />
-                            <span matSuffix [innerHtml]="currency"></span>
-                        </mat-form-field>
-
-                        <div class="calc-form-field">
-                            <div class="calc-form-result">
-                                {{inversion.additionalCosts.renovationCostPropertyTotal | number:'1.0-0'}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="input-with-calc">
-                        <mat-form-field appearance="standard">
-                            <mat-label>Accessories & Appliances</mat-label>
-                            <input matInput [(ngModel)]="inversion.additionalCosts.accesseories" type="number" />
-                            <span matSuffix [innerHtml]="currency"></span>
-                        </mat-form-field>
-
-                        <div class="calc-form-field">
-                            <div class="calc-form-result">
-                                {{inversion.additionalCosts.accesseoriesTotal | number:'1.0-0'}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="input-with-calc">
-                        <mat-form-field appearance="standard">
-                            <mat-label>Plans & Architects</mat-label>
-                            <input matInput [(ngModel)]="inversion.additionalCosts.plasnArchitects" type="number" />
-                            <span matSuffix [innerHtml]="currency"></span>
-                        </mat-form-field>
-
-                        <div class="calc-form-field">
-                            <div class="calc-form-result">
-                                {{inversion.additionalCosts.plasnArchitectsTotal | number:'1.0-0'}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="input-with-calc">
-                        <mat-form-field appearance="standard">
-                            <mat-label>Renovation Management</mat-label>
-                            <input matInput [(ngModel)]="inversion.additionalCosts.renovationManagement" type="number"
-                                step="0.01" percentage />
-                            <span matSuffix>%</span>
-                        </mat-form-field>
-
-                        <div class="calc-form-field">
-                            <div class="calc-form-result">
-                                {{inversion.additionalCosts.renovationManagementTotal | number:'1.0-0'}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-total-row">
-                        <label class="card-total-row-label">Total</label>
-
-                        <div class="calc-form-field">
-                            <div class="calc-form-result">{{inversion.additionalCosts.renovationTotal | number:'1.0-0'}}
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        *These costs vary by &#177;15%.
                     </div>
                 </mat-card-content>
 

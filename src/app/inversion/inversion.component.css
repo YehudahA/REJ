@@ -158,14 +158,3 @@ mat-expansion-panel mat-card-title {
 #remarks {
   width: 20em;
 }
-
-@media print {
-  main {
-    display: table;
-  }
-
-  .main-mat-card {
-    display: inline-block;
-    page-break-inside: avoid;
-  }
-}
