@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Inversion } from '../models/inversion';
-import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
 import { DataReaderService } from '../services/data-reader.service';
 import { DefaultsService } from '../services/defaults.service';
 import { MenuService } from '../services/menu.service';
@@ -18,19 +17,7 @@ export class InversionComponent implements OnInit {
 
   private selectedCurrency = 1;
   inversion: Inversion;
-
-  public barChart: GoogleChartInterface = {
-    chartType: 'Bar',
-    dataTable: [],
-    options: {
-      chart: {
-        title: 'Cash flow',
-        subtitle: 'Finance Expenses vs Rent Income',
-      },
-      width: 600,
-      height: 400
-    }
-  };
+  cashflowData: (string | number)[][];
 
   constructor(
     private titleService: Title,
@@ -74,18 +61,11 @@ export class InversionComponent implements OnInit {
     this.buildChart();
   }
 
-  buildChart() {
-    this.barChart.dataTable = [
-      ["Year", "Income", "Expenses"], ...this.inversion.yearlyCashFlowTable
-    ];
-
-    const chartComponent = this.barChart.component;
-    if (chartComponent && chartComponent.wrapper) {
-      chartComponent.draw();
-    }
+  buildChart(){
+    this.cashflowData = this.inversion.yearlyCashFlowTable;
   }
-
-  save() {
+  
+   save() {
     const copy = new Inversion(undefined);
     copy.copyFrom(this.inversion);
     delete copy.changeEmitter;

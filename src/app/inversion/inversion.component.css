@@ -158,3 +158,12 @@ mat-expansion-panel mat-card-title {
 #remarks {
   width: 20em;
 }
+
+
+@media print{
+    .cashflow-chart-card{
+        display: inline-block;
+        transform: scale(.6);
+        transform-origin: 0 -270px;
+    }
+}

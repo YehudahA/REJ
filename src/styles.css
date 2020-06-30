@@ -10,7 +10,22 @@ body {
 }
 
 @media print {
+  body {
+    font: 13pt Georgia, "Times New Roman", Times, serif;
+    width: 21cm;
+  }
+
   .dont-print {
     display: none !important;
   }
+}
+
+@media screen{
+  .only-print {
+    display: none !important;
+  }
+}
+
+@page {
+  margin: 0 1.5cm;
 }

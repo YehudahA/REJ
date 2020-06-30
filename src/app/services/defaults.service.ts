@@ -3,6 +3,7 @@ import { Rent, RentModel } from '../models/rent';
 import { Inversion } from '../models/inversion';
 import { AdditionalCost } from '../models/additional-cost';
 import { Settings } from '../models/settings';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,13 @@ export class DefaultsService {
       israelVat: 1.17
     };
     const inversion = new Inversion(settings);
+
+    if(!environment.production){
+      inversion.clientName = 'שם הלקוח';
+      inversion.remarks = 'הערות חשובות וארוכות. בלה בלה בלה';
+      inversion.propertyType = 'נכס מניב יפה';
+      inversion.propertyAddress = "רחוב ישראל ישראלי 204";
+    }
 
     inversion.propertyCost = 200000;
     inversion.propertySize = 40;

@@ -25,6 +25,9 @@ import { PercentageValueAccessor } from './misc/percentage-value-accessor';
 import { AbsPipe } from './misc/abs.pipe';
 import { IntegerValueAccessor } from './misc/integer-value-accessor';
 import { MenuComponent } from './menu/menu.component';
+import { PrintInversionComponent } from './print/print-inversion/print-inversion.component';
+import { ValueBoxComponent } from './print/value-box/value-box.component';
+import { CassflowChartComponent } from './cassflow-chart/cassflow-chart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { MenuComponent } from './menu/menu.component';
     PercentageValueAccessor,
     IntegerValueAccessor,
     AbsPipe,
-    MenuComponent
+    MenuComponent,
+    PrintInversionComponent,
+    ValueBoxComponent,
+    CassflowChartComponent
   ],
   imports: [
     BrowserModule,

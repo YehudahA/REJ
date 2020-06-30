@@ -5,34 +5,78 @@
 }
 
 header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #3f51b5;
-    color: white;
-}
-
-header > img{
-    height: 100px;
-    margin: 0 10px;
-}
-
-#app-title {
-    margin-inline-start: 12px;
-    flex: 1;
-}
-
-app-inversion{
-    flex: 1;
-}
-
-#footer-logo {
     width: 100%;
 }
 
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo >  img{
+    height: 100px;
+    margin: 0;
+}
+.amb {
+    font-size: 4em;
+    color: lightgray;
+    margin-inline-start: -.1em;
+    margin-inline-end: -.1em;
+    z-index: 100;
+}
+
+#app-title {
+    font-size: 36px;
+    color: gray;
+    margin: 0;
+}
+
+main{
+    flex: 1;
+}
+
+footer,
+#footer-logo {
+    width: 100%;
+    z-index: -1;
+}
+
 @media print{
+    header {
+        position: fixed;
+        top: 0;
+    }
+
     footer{
         position: fixed;
         bottom: 0;
+    }
+
+    .print-comments{
+        margin-top: -290px;
+    }
+
+    .comment-line{
+        height: 1.5em;
+        border-bottom: black 1px solid;
+    }
+
+    .declares{
+        font-size: 10pt;
+        margin-inline-start: 2ch;
+    }
+    .declares p{
+        margin: .5em 0;
+    }
+    .declares p::before{
+        content: '-';
+        position: absolute;
+        left: 0.6em;
+    }
+    #rights{
+        font-size: 7pt;
+        margin-inline-start: 1cm;
+        margin-top: -20pt;
     }
 }

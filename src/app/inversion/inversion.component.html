@@ -1,4 +1,4 @@
-<section class="card-group">
+<section class="card-group dont-print">
 
     <mat-card class="main-mat-card">
         <mat-card-header>
@@ -141,7 +141,7 @@
 
 </section>
 
-<section class="margin-15">
+<section class="margin-15 dont-print">
     <mat-expansion-panel>
 
         <mat-expansion-panel-header>
@@ -454,7 +454,7 @@
     </mat-expansion-panel>
 </section>
 
-<section class="card-group">
+<section class="card-group dont-print">
 
     <mat-card class="main-mat-card">
         <mat-card-header>
@@ -660,10 +660,13 @@
         </mat-card-content>
 
     </mat-card>
-
-    <mat-card class="main-mat-card">
-        <mat-card-content>
-            <google-chart [data]="barChart"></google-chart>
-        </mat-card-content>
-    </mat-card>
 </section>
+
+<hr class="only-print" />
+<app-print-inversion class="only-print" [inversion]="inversion" [currency]="currency"></app-print-inversion>
+
+<mat-card class="main-mat-card cashflow-chart-card">
+    <mat-card-content>
+        <app-cassflow-chart [data]="cashflowData"></app-cassflow-chart>
+    </mat-card-content>
+</mat-card>

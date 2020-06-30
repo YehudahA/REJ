@@ -1,0 +1,529 @@
+<section class="row start-page">
+    <section class="card">
+        <h3>General</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Date</td>
+                    <td>{{inversion.date | date:'dd-MMM-yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td>Client Name</td>
+                    <td>{{inversion.clientName}}</td>
+                </tr>
+                <tr>
+                    <td>Property Type</td>
+                    <td>{{inversion.propertyType}}</td>
+                </tr>
+                <tr>
+                    <td>Details</td>
+                    <td>{{inversion.remarks}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="card">
+        <h3>Property</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Property Cost</td>
+                    <td>
+                        <print-value-box [value]="inversion.propertyCost | number:'1.0-0'" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Property Size</td>
+                    <td>
+                        <print-value-box [value]="inversion.propertySize" [suffix]="'M<sup>2</sup>'"></print-value-box>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price Per M<sup>2</sup></td>
+                    <td>
+                        <print-value-box [value]="inversion.propertyCost / inversion.propertySize | number:'1.0-0'"
+                            [suffix]="currency"></print-value-box>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{inversion.propertyAddress}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="card">
+        <h3>Financing</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Principal</td>
+                    <td>
+                        <print-value-box [value]="inversion.financing | number:'1.0-0'" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Principal (%)</td>
+                    <td>
+                        <print-value-box [value]="inversion.financing / inversion.propertyCost * 100 | number:'1.0-0'"
+                            [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Rate</td>
+                    <td>
+                        <print-value-box [value]="inversion.financingRate * 100 | number:'1.2-2'" [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Years</td>
+                    <td>{{inversion.financingNPER}}</td>
+                </tr>
+
+                <tr>
+                    <td>PMT</td>
+                    <td>
+                        <print-value-box [value]="-inversion.PMT | number:'1.0-0'" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Self Capital</td>
+                    <td>
+                        <print-value-box [value]="inversion.selfCapital | number:'1.0-0'" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+<hr class="row-seperator" />
+
+<section class="row">
+    <section class="card flex flex-col">
+        <section>
+            <h3>Financing Expenses</h3>
+
+            <table class="table-with-total-column">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Total (<span [innerHTML]="currency"></span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Taxes & Fees</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.financTaxes * 100 | number:'1.2-2'"
+                                [suffix]="'%'"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.financTaxesTotal | number:'1.0-0'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Appraisal</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.appraisal | number:'1.0-0'"
+                                [suffix]="currency">
+                            </print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.appraisalTotal | number:'1.0-0'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Mortgage Fees</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.mortgageFees * 100 | number:'1.2-2'"
+                                [suffix]="'%'"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.mortgageFeesTotal | number:'1.0-0'}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <th colspan="2">Total</th>
+                        <th>{{inversion.additionalCosts.financTotal | number:'1.0-0'}}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section>
+            <h3>Renovation Costs (Est.)</h3>
+
+            <table class="table-with-total-column">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Total (<span [innerHTML]="currency"></span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cost per Sq.M</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.renovationCostPerM | number"
+                                [suffix]="currency"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.renovationCostPropertyTotal | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Accessories & Appliances</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.accesseories | number"
+                                [suffix]="currency"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.accesseoriesTotal | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Plans & Architects</td>
+                        <td>
+                            <print-value-box [value]="inversion.additionalCosts.plasnArchitects | number"
+                                [suffix]="currency"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.plasnArchitectsTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Renovation Management</td>
+                        <td>
+                            <print-value-box
+                                [value]="inversion.additionalCosts.renovationManagement * 100 | number:'1.2-2'"
+                                [suffix]="'%'"></print-value-box>
+                        </td>
+                        <td>{{inversion.additionalCosts.renovationManagementTotal | number:'1.0-0'}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>*These costs vary by &#177;15%.</small>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <th colspan="2">Total</th>
+                        <th>{{inversion.additionalCosts.renovationTotal | number:'1.0-0'}}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+    </section>
+
+    <section class="card">
+        <h3>Additional Costs</h3>
+
+        <table class="table-with-total-column">
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th>Total (<span [innerHTML]="currency"></span>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Purchase Tax</td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.purchaseTax * 100| number:'1.2-2'"
+                            [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.purchaseTaxTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Due Diligens Reports</td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.diligensReports * 100| number:'1.2-2'"
+                            [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.diligensReportsTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Notary<small> & Property Reg.</small></td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.notary * 100| number:'1.2-2'"
+                            [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.notaryTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Translations</td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.translation | number:'1.0-0'"
+                            [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.translationTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Tourist Use Permission</td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.touristUsePermission | number:'1.0-0'"
+                            [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.touristUsePermissionTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Legal Fees (Lawyers)</td>
+                    <td>
+                        <print-value-box [value]="inversion.additionalCosts.lawyers * 100| number:'1.2-2'"
+                            [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                    <td>{{inversion.additionalCosts.lawyersTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Legal (miscelaneous)</td>
+                    <td></td>
+                    <td>{{inversion.additionalCosts.legal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Process Fees (REJ & GB)</td>
+                    <print-value-box [value]="inversion.additionalCosts.REJFees * 100| number:'1.2-2'" [suffix]="'%'">
+                    </print-value-box>
+                    <td>{{inversion.additionalCosts.REJFeesTotal | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Unpredicted (Est.)</td>
+                    <td></td>
+                    <td>{{inversion.additionalCosts.unpredicted | number:'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td></td>
+                    <td>{{inversion.additionalCosts.other | number:'1.0-0'}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <th colspan="2">Total</th>
+                    <th>{{inversion.additionalCosts.additionalTotal | number:'1.0-0'}}</th>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+</section>
+
+<section class="row">
+    <div id="exp-total" class="margin-top">
+        <span>Total Cost $ Expenses:</span>
+        <span>{{inversion.additionalCosts.total | number:'1.0-0'}}</span>
+        <span [innerHTML]="currency"></span>
+    </div>
+</section>
+
+<section class="row start-page new-page">
+    <section class="card">
+        <h3>Income</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Model</td>
+                    <td>{{inversion.rent.rentModel}}</td>
+                </tr>
+
+                <tr>
+                    <td>Rent Price</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.rentPrice | number" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Yearly Change</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.yearlyChange * 100 | number:'1.2-2'" [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Occupancy</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.occupancyPercentage * 100 | number:'1.0-0'"
+                            [suffix]="'%'"></print-value-box>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Management Fees</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.managementFees * 100 | number:'1.0-2'" [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Monthly Expenses</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.monthlyExpenses | number" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Yearly Expenses</td>
+                    <td>
+                        <print-value-box [value]="inversion.rent.yearlyExpenses | number" [suffix]="currency">
+                        </print-value-box>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <th>Total Monthly Income</th>
+                    <th>
+                        <print-value-box [value]="inversion.rent.monthlyIncome | number:'1.0-0'" [suffix]="currency">
+                        </print-value-box>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </section>
+
+    <section class="card">
+        <h3>Exit</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>Investment Period (Y)</td>
+                    <td>{{inversion.investmentPeriod}}</td>
+                </tr>
+
+                <tr>
+                    <td>Appreciation Rate</td>
+                    <td>
+                        <print-value-box [value]="inversion.appreciationRate | number:'1.0-0'" [suffix]="'%'">
+                        </print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Yearly Value Change 1st</td>
+                    <td>
+                        <print-value-box [value]="inversion.propertyValueChange1st * 100 | number:'1.2-2'"
+                            [suffix]="'%'"></print-value-box>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>1st Period (Y)</td>
+                    <td>{{inversion.propertyValueChange1thPeriod}}</td>
+                </tr>
+
+                <tr>
+                    <td>Yearly Value Change 2nd</td>
+                    <td>
+                        <print-value-box [value]="inversion.propertyValueChange2nd * 100 | number:'1.2-2'"
+                            [suffix]="'%'"></print-value-box>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="card">
+        <h3>Result</h3>
+
+        <div>
+            <div class="result-group">
+
+                <h4>Total Cashflow</h4>
+
+                <table class="table-with-total-column">
+                    <tbody>
+                        <tr>
+                            <td class="total-label">Total Income</td>
+                            <td class="total-value">{{inversion.totalRent | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-label">Financial Expenses</td>
+                            <td class="total-value">{{inversion.financialExpenses | abs | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-label">Net Income</td>
+                            <td class="total-value">{{inversion.totalNetIncome | number:'1.0-0'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="result-group">
+                <h4>Balance</h4>
+
+                <table class="table-with-total-column">
+                    <tbody>
+                        <tr>
+                            <td class="total-label">Future Property Value:</td>
+                            <td class="total-value">{{inversion.futurePropertyValue | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr *ngIf="inversion.showTax">
+                            <td class="total-label">Tax:</td>
+                            <td class="total-value">{{inversion.totalExitTax | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-label">Loan Balance:</td>
+                            <td class="total-value">{{inversion.loanExitBalance | abs | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-label">Total</td>
+                            <td class="total-value">{{inversion.totalExitBalance | number:'1.0-0'}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="result-group">
+                <h4>Gain</h4>
+
+                <table class="table-with-total-column">
+                    <tbody>
+                        <tr>
+                            <td class="total-label">Nominal Gain</td>
+                            <td class="total-value">{{inversion.nominalGain | number:'1.0-0'}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="total-label">IRR</td>
+                            <td class="total-value">{{inversion.IRR | percent:'1.2-2'}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </section>
+</section>
