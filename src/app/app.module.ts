@@ -28,6 +28,10 @@ import { MenuComponent } from './menu/menu.component';
 import { PrintInversionComponent } from './print/print-inversion/print-inversion.component';
 import { ValueBoxComponent } from './print/value-box/value-box.component';
 import { cashflowChartComponent } from './cashflow-chart/cashflow-chart.component';
+import { ImageFormComponent } from './image-form/image-form.component';
+import { ScreenAppComponent } from './screen-app/screen-app.component';
+import { PrintAppComponent } from './print/print-app/print-app.component';
+import { ImageListComponent } from './image-list/image-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { cashflowChartComponent } from './cashflow-chart/cashflow-chart.componen
     MenuComponent,
     PrintInversionComponent,
     ValueBoxComponent,
-    cashflowChartComponent
+    cashflowChartComponent,
+    ImageFormComponent,
+    ScreenAppComponent,
+    PrintAppComponent,
+    ImageListComponent
   ],
   imports: [
     BrowserModule,

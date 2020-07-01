@@ -1,0 +1,75 @@
+<table id="layout-table">
+    <thead>
+        <tr>
+            <td class="layout-cell">
+                <div class="header-space">&nbsp;</div>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="layout-cell">
+                <app-print-inversion [inversion]="application.inversion" [currency]="application.currency"
+                    [cashflowData]="application.cashflowData">
+                </app-print-inversion>
+
+                <section class="print-comments">
+                    <h3>Comments</h3>
+                    <p class="comment-line"></p>
+                    <p class="comment-line"></p>
+                    <p class="comment-line"></p>
+
+                    <div class="declares">
+                        <p>Final Cost: The final property price may deeply vary from these numbers. It depends on the
+                            market prices
+                            and the finally chosen property.
+                        </p>
+                        <p>
+                            The values of this report represent a sample property only and does NOT reflect the final
+                            purchase property.
+                        </p>
+                        <p>
+                            Loan: CondiKonal on the lender's (bank). The final loan amount will be determined by the
+                            appraisal or
+                            the amount appears in the contractthe lower of both.
+                        </p>
+                        <p>
+                            This document does not replace the need to personally inspect the property before confirming
+                            the purchase.
+                        </p>
+                        <p>
+                            Tax on rental income in Spain is 24% on quarterly declaraKon basis. We will introduce you to
+                            a local accountant.</p>
+                        <p>
+                            bank financing is required, you will be required to buy property insurance and translate
+                            documents into
+                            Spanish/English.</p>
+                        <p>Payment of property and community taxes - depend on the property and the contract with the
+                            tenant.</p>
+                        <p>This report does not take into account personal taxaKon in Israel.</p>
+                    </div>
+                </section>
+
+                <section id="print-image-list-wrapper" class="new-page" *ngIf="application.images.length">
+                    <div id="print-image-list">
+                        <div *ngFor="let img of application.images">
+                            <div *ngIf="img.image" class="image-item">
+                                <div></div> <!-- fix print issue -->
+                                <h3>{{img.description}}</h3>
+                                <img src="{{img.image}}" [style.width.px]="img.width" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="layout-cell">
+                <div class="footer-space">&nbsp;</div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

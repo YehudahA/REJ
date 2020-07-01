@@ -1,4 +1,4 @@
-<section class="card-group dont-print">
+<section class="card-group">
 
     <mat-card class="main-mat-card">
         <mat-card-header>
@@ -141,7 +141,7 @@
 
 </section>
 
-<section class="margin-15 dont-print">
+<section class="margin-15">
     <mat-expansion-panel>
 
         <mat-expansion-panel-header>
@@ -454,7 +454,7 @@
     </mat-expansion-panel>
 </section>
 
-<section class="card-group dont-print">
+<section class="card-group">
 
     <mat-card class="main-mat-card">
         <mat-card-header>
@@ -609,7 +609,7 @@
 
                 <div>
                     <label class="total-label">Net Income</label>
-                    <label class="total-value">{{inversion.totalNetIncome | number:'1.0-0'}}</label>
+                    <label classs="total-value">{{inversion.totalNetIncome | number:'1.0-0'}}</label>
                 </div>
 
             </div>
@@ -662,32 +662,10 @@
     </mat-card>
 </section>
 
-<table id="layout-table" class="only-print">
-    <thead>
-        <tr>
-            <td class="layout-cell">
-                <div class="header-space">&nbsp;</div>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="layout-cell">
-                <app-print-inversion [inversion]="inversion" [currency]="currency"></app-print-inversion>
-            </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="layout-cell">
-                <div class="footer-space">&nbsp;</div>
-            </td>
-        </tr>
-    </tfoot>
-</table>
-
-<mat-card class="main-mat-card cashflow-chart-card">
-    <mat-card-content>
-        <app-cashflow-chart [data]="cashflowData"></app-cashflow-chart>
-    </mat-card-content>
-</mat-card>
+<section>
+    <mat-card class="main-mat-card">
+        <mat-card-content>
+            <app-cashflow-chart [data]="application.cashflowData" [width]="600"></app-cashflow-chart>
+        </mat-card-content>
+    </mat-card>
+</section>

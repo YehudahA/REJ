@@ -158,26 +158,3 @@ mat-expansion-panel mat-card-title {
 #remarks {
   width: 20em;
 }
-
-@media print {
-  #layout-table {
-    border-spacing: 0;
-  }
-
-  .layout-cell {
-    padding: 0;
-  }
-
-  .header-space {
-    height: 5.5cm;
-  }
-  .footer-space {
-    height: 4.5cm;
-  }
-
-  .cashflow-chart-card {
-    display: inline-block;
-    transform: scale(0.6);
-    transform-origin: 0 -700px;
-  }
-}

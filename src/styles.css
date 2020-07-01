@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.new-page {
+  page-break-before: always;
+}
+
 @media print {
   body {
     font: 13pt Georgia, "Times New Roman", Times, serif;

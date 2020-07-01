@@ -1,0 +1,20 @@
+<mat-card id="images-card" class="main-mat-card">
+    <mat-card-header>
+        <mat-card-title>Images</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="card-content-2-cols">
+        <div *ngFor="let image of application.images" class="image-form-item">
+            <div class="image-form">
+                <app-image-form [image]="image"></app-image-form>
+                <button (click)="removeImage(image)" class="remove-button" mat-flat-button>Remove</button>
+            </div>
+
+            <div *ngIf="image.image">
+                <img src="{{image.image}}" [style.width.px]="image.width" />
+            </div>
+        </div>
+
+        <button id="add-image" (click)="addImage()" mat-button>Add Image ...</button>
+    </mat-card-content>
+</mat-card>

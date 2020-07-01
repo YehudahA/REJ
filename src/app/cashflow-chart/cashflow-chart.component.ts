@@ -9,23 +9,26 @@ import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces
 export class cashflowChartComponent {
   private _data: any;
 
-  @Input() set data(val: (string | number)[][]){
-    this._data = val;
-    this.buildChart();
-  }
-  
-  public barChart: GoogleChartInterface = {
+  barChart: GoogleChartInterface = {
     chartType: 'Bar',
     dataTable: [],
     options: {
       chart: {
         title: 'Cash flow',
         subtitle: 'Finance Expenses vs Rent Income',
-      },
-      width: 600,
-      height: 400
+      }
     }
   };
+
+  @Input() set data(val: (string | number)[][]) {
+    this._data = val;
+    this.buildChart();
+  }
+  @Input() set width(val: number) {
+    const opts = this.barChart.options as any;
+    opts.width = val;
+    opts.height = Math.round(val * 2 / 3);
+  }
 
   buildChart() {
     this.barChart.dataTable = [

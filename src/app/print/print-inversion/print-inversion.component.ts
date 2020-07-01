@@ -10,4 +10,5 @@ export class PrintInversionComponent {
 
   @Input() inversion: Inversion;
   @Input() currency: string;
+  @Input() cashflowData: any;
 }

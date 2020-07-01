@@ -329,7 +329,7 @@
     </div>
 </section>
 
-<section class="row new-page">
+<section id="page-2" class="new-page">
     <section class="card">
         <h3>Income</h3>
 
@@ -525,5 +525,9 @@
 
         </div>
 
+    </section>
+
+    <section id="cashflow-chart-section">
+        <app-cashflow-chart [data]="cashflowData" [width]="340"></app-cashflow-chart>
     </section>
 </section>

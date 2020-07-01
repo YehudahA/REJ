@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Application } from './models/application';
+import { DefaultsService } from './services/defaults.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Calc';
+
+  application: Application;
+
+  constructor(defaultsService: DefaultsService) {
+    const inversion = defaultsService.getDefaultInversion();
+
+    this.application = {
+      inversion,
+      images: [],
+      currency: undefined,
+      cashflowData: []
+    }
+  }
 }

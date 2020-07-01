@@ -1,0 +1,41 @@
+:host {
+    --card-content-end-padding: 26px;
+    --card-content-padding: 16px 16px var(--card-content-end-padding) 16px;
+  }
+  
+  #images-card {
+    min-width: 400px;
+    max-width: max-content;
+}
+
+.main-mat-card {
+  margin: 15px;
+  padding: 0;
+}
+
+.main-mat-card .mat-card-header {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  padding: 8px 20px;
+  color: rgba(0, 0, 0, 0.54);
+  background: rgba(0, 0, 0, 0.03);
+  height: 40px;
+}
+
+.main-mat-card .mat-card-header .mat-card-title {
+  margin-bottom: 0;
+}
+
+.main-mat-card .mat-card-content {
+  padding: var(--card-content-padding);
+  padding-inline-end: var(--card-content-end-padding);
+}
+
+.image-form {
+  display: flex;
+}
+
+#add-image{
+    margin-block-start: 20px;
+}

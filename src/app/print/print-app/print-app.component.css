@@ -1,0 +1,55 @@
+#layout-table {
+  border-spacing: 0;
+}
+
+.layout-cell {
+  padding: 0;
+}
+
+.header-space {
+  height: 5.5cm;
+}
+
+.footer-space {
+  height: 3.5cm;
+}
+
+.cashflow-chart-card {
+  display: inline-block;
+  transform: scale(0.6);
+  transform-origin: 0 0;
+  position: absolute;
+  top: 35cm;
+}
+
+.comment-line {
+  height: 1.5em;
+  border-bottom: black 1px solid;
+}
+
+.declares {
+  font-size: 10pt;
+  margin-block-start: 3em;
+  margin-inline-start: 2ch;
+}
+.declares p {
+  margin: 0.5em 0;
+}
+.declares p::before {
+  content: "-";
+  position: absolute;
+  left: 0.6em;
+}
+
+#print-image-list-wrapper {
+  display: flex;
+}
+
+#print-image-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-item{
+  page-break-inside: avoid;
+}

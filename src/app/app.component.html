@@ -12,43 +12,10 @@
     </div>
 </header>
 
-<nav>
-    <app-menu class="dont-print"></app-menu>
-</nav>
-
-<main>
-    <app-inversion></app-inversion>
-
-    <section class="print-comments only-print">
-        <h3>Comments</h3>
-        <p class="comment-line"></p>
-        <p class="comment-line"></p>
-        <p class="comment-line"></p>
-
-        <div class="declares">
-            <p>Final Cost: The final property price may deeply vary from these numbers. It depends on the market prices
-                and the finally chosen property.
-            </p>
-            <p>
-                The values of this report represent a sample property only and does NOT reflect the final purchase property.
-            </p>
-            <p>
-                Loan: CondiKonal on the lender's (bank). The final loan amount will be determined by the appraisal or
-                the amount appears in the contractthe lower of both.
-            </p>
-            <p>
-                This document does not replace the need to personally inspect the property before confirming the purchase.
-            </p>
-            <p>
-                Tax on rental income in Spain is 24% on quarterly declaraKon basis. We will introduce you to a local accountant.</p>
-            <p>
-                bank financing is required, you will be required to buy property insurance and translate documents into
-                Spanish/English.</p>
-            <p>Payment of property and community taxes - depend on the property and the contract with the tenant.</p>
-            <p>This report does not take into account personal taxaKon in Israel.</p>
-        </div>
-    </section>
-</main>
+<div class="main">
+    <app-screen-app class="dont-print" [application]="application"></app-screen-app>
+    <print-app class="only-print" [application]="application"></print-app>
+</div>
 
 <footer>
     <img src="./assets/images/madrid.png" id="footer-logo" />
