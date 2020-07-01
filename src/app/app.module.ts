@@ -27,7 +27,7 @@ import { IntegerValueAccessor } from './misc/integer-value-accessor';
 import { MenuComponent } from './menu/menu.component';
 import { PrintInversionComponent } from './print/print-inversion/print-inversion.component';
 import { ValueBoxComponent } from './print/value-box/value-box.component';
-import { CassflowChartComponent } from './cassflow-chart/cassflow-chart.component';
+import { cashflowChartComponent } from './cashflow-chart/cashflow-chart.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { CassflowChartComponent } from './cassflow-chart/cassflow-chart.componen
     MenuComponent,
     PrintInversionComponent,
     ValueBoxComponent,
-    CassflowChartComponent
+    cashflowChartComponent
   ],
   imports: [
     BrowserModule,

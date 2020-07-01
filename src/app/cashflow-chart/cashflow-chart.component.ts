@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { GoogleChartInterface } from 'ng2-google-charts/google-charts-interfaces';
 
 @Component({
-  selector: 'app-cassflow-chart',
-  templateUrl: './cassflow-chart.component.html',
-  styleUrls: ['./cassflow-chart.component.css']
+  selector: 'app-cashflow-chart',
+  templateUrl: './cashflow-chart.component.html',
+  styleUrls: ['./cashflow-chart.component.css']
 })
-export class CassflowChartComponent {
+export class cashflowChartComponent {
   private _data: any;
 
   @Input() set data(val: (string | number)[][]){
