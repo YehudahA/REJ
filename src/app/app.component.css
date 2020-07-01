@@ -54,7 +54,7 @@ footer,
     }
 
     .print-comments{
-        margin-top: -290px;
+        margin-top: -450px;
     }
 
     .comment-line{
@@ -64,6 +64,7 @@ footer,
 
     .declares{
         font-size: 10pt;
+        margin-block-start: 3em;
         margin-inline-start: 2ch;
     }
     .declares p{

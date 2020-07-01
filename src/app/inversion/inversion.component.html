@@ -662,8 +662,29 @@
     </mat-card>
 </section>
 
-<hr class="only-print" />
-<app-print-inversion class="only-print" [inversion]="inversion" [currency]="currency"></app-print-inversion>
+<table id="layout-table" class="only-print">
+    <thead>
+        <tr>
+            <td class="layout-cell">
+                <div class="header-space">&nbsp;</div>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="layout-cell">
+                <app-print-inversion [inversion]="inversion" [currency]="currency"></app-print-inversion>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="layout-cell">
+                <div class="footer-space">&nbsp;</div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 
 <mat-card class="main-mat-card cashflow-chart-card">
     <mat-card-content>
