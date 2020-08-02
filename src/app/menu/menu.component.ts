@@ -20,6 +20,10 @@ export class MenuComponent {
     this.menuService.save.emit();
   }
 
+  print(){
+    window.print();
+  }
+
   changeCurrency(val: number){
     this.menuService.currencyChange.emit(val);
   }

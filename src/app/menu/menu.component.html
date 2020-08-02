@@ -2,12 +2,17 @@
     <button mat-button>
         <label>
             <span>Open File...</span>
-            <input (change)="fileLoaded($event.target)" type="file" hidden/>
+            <input (change)="fileLoaded($event.target)" type="file" hidden />
         </label>
     </button>
 
-    <button (click)="save()" mat-button>Save</button>
+    <button (click)="save()" mat-icon-button>
+        <mat-icon>save</mat-icon>
+    </button>
 
+    <button (click)="print()" mat-icon-button>
+        <mat-icon>print</mat-icon>
+    </button>
     <mat-radio-group class="currency-selector" (change)="changeCurrency($event.value)">
         <mat-radio-button value="1" checked>&euro;</mat-radio-button>
         <mat-radio-button value="2">&#8362;</mat-radio-button>

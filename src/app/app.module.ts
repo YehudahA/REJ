@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 // other ligs
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
@@ -64,7 +65,8 @@ import { ImageListComponent } from './image-list/image-list.component';
     MatCardModule,
     MatRadioModule,
     MatToolbarModule,
-
+    MatIconModule,
+    
     Ng2GoogleChartsModule
   ],
   providers: [],
