@@ -6,6 +6,8 @@ import { DataReaderService } from '../services/data-reader.service';
 import { ShowTaxService } from '../services/show-tax.service';
 import { MenuService } from '../services/menu.service';
 import { Inversion } from '../models/inversion';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveDialogComponent } from '../save-dialog/save-dialog.component';
 
 @Component({
   selector: 'app-screen-app',
@@ -21,6 +23,7 @@ export class ScreenAppComponent {
     private fileDownloader: FileDownloaderService,
     private fileReader: DataReaderService,
     private showTaxService: ShowTaxService,
+    private dialog: MatDialog,
     menuService: MenuService,
   ) {
     fileReader.inversionStream.subscribe(inversion => {
@@ -29,7 +32,7 @@ export class ScreenAppComponent {
       }
     });
 
-    menuService.save.subscribe(() => this.save());
+    menuService.save.subscribe(() => this.openSaveDialog());
 
     menuService.currencyChange.subscribe((v: number) => this.application.currency = this.getCurrency(v));
   }
@@ -67,7 +70,21 @@ export class ScreenAppComponent {
     this.buildChart();
   }
 
-  save() {
+  openSaveDialog() {
+    const dialogRef = this.dialog.open(SaveDialogComponent, {
+      width: '250px',
+      data: { fileName: this.application.inversion.clientName }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save(result);
+      }
+    });
+
+  }
+
+  save(fileName: string) {
     const copy = new Inversion(undefined);
     copy.copyFrom(this.application.inversion);
     delete copy.changeEmitter;
@@ -75,7 +92,7 @@ export class ScreenAppComponent {
     delete copy.additionalCosts.changeEmitter
     delete copy.additionalCosts["inversion"];
 
-    this.fileDownloader.download(copy, (copy.clientName || 'inversoin') + ".rej");
+    this.fileDownloader.download(copy, (fileName || 'inversoin') + ".rej");
   }
 
   private getCurrency(code: number) {

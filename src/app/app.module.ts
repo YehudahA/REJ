@@ -13,6 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 
 // other ligs
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
@@ -33,6 +34,7 @@ import { ImageFormComponent } from './image-form/image-form.component';
 import { ScreenAppComponent } from './screen-app/screen-app.component';
 import { PrintAppComponent } from './print/print-app/print-app.component';
 import { ImageListComponent } from './image-list/image-list.component';
+import { SaveDialogComponent } from './save-dialog/save-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ImageListComponent } from './image-list/image-list.component';
     ImageFormComponent,
     ScreenAppComponent,
     PrintAppComponent,
-    ImageListComponent
+    ImageListComponent,
+    SaveDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +69,11 @@ import { ImageListComponent } from './image-list/image-list.component';
     MatRadioModule,
     MatToolbarModule,
     MatIconModule,
-    
+    MatDialogModule,
+
     Ng2GoogleChartsModule
   ],
+  entryComponents: [SaveDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
