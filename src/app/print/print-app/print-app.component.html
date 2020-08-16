@@ -53,10 +53,10 @@
                 <section id="print-image-list-wrapper" class="new-page" *ngIf="application.images.length">
                     <div id="print-image-list">
                         <div *ngFor="let img of application.images">
-                            <div *ngIf="img.image" class="image-item">
+                            <div *ngIf="img.stringUrl" class="image-item">
                                 <div></div> <!-- fix print issue -->
                                 <h3>{{img.description}}</h3>
-                                <img src="{{img.image}}" [style.width.px]="img.width" />
+                                <img src="{{img.stringUrl}}" />
                             </div>
                         </div>
                     </div>

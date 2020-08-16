@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Application } from '../models/application';
-import { Image } from '../models/image';
+import { AppImage } from '../models/app-image';
 
 @Component({
   selector: 'app-image-list',
@@ -12,10 +12,10 @@ export class ImageListComponent {
   @Input() application: Application;
 
   addImage() {
-    this.application.images.push(new Image())
+    this.application.images.push(new AppImage())
   }
 
-  removeImage(img: Image) {
+  removeImage(img: AppImage) {
     const index = this.application.images.indexOf(img);
     if (index > -1) {
       this.application.images.splice(index, 1);

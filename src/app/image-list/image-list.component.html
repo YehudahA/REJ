@@ -10,8 +10,8 @@
                 <button (click)="removeImage(image)" class="remove-button" mat-flat-button>Remove</button>
             </div>
 
-            <div *ngIf="image.image">
-                <img src="{{image.image}}" [style.width.px]="image.width" />
+            <div *ngIf="image.stringUrl">
+                <img src="{{image.stringUrl}}" />
             </div>
         </div>
 

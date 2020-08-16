@@ -1,29 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Image } from '../models/image';
+import { Component, Input } from '@angular/core';
+import { AppImage } from '../models/app-image';
+import { ImageCompressService } from '../services/image-compress.service';
 
 @Component({
   selector: 'app-image-form',
   templateUrl: './image-form.component.html',
   styleUrls: ['./image-form.component.css']
 })
-export class ImageFormComponent implements OnInit {
+export class ImageFormComponent {
 
-  @Input() image: Image;
+  @Input() image: AppImage;
+  originalStringUrl: string;
+  private _width: number = 400;
 
-  constructor() { }
+  constructor(private imageCompressService: ImageCompressService) { }
 
-  ngOnInit() {
-  }
-
-  loadImage(files: FileList) {
-    this.image.image = null;
-    
+  async loadImage(files: FileList) {
     if (files && files[0]) {
       let reader = new FileReader();
+
       reader.addEventListener('load', () => {
-        this.image.image = reader.result;
+        this.originalStringUrl = reader.result as string;
+        this.compress();
       });
+
       reader.readAsDataURL(files[0]);
     }
+  }
+
+  async compress() {
+    this.image.stringUrl = await this.imageCompressService.compressFile(this.originalStringUrl, this.width);
+  }
+
+  get width() { return this._width; }
+  set width(val: number) {
+    this._width = val;
+    this.compress();
   }
 }

@@ -1,9 +1,9 @@
 import { Inversion } from './inversion';
-import { Image } from './image';
+import { AppImage } from './app-image';
 
 export interface Application {
     inversion: Inversion;
-    images: Image[];
+    images: AppImage[];
     currency: string;
     cashflowData: (string | number)[][]
 }
